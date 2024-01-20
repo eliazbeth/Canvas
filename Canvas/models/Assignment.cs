@@ -6,9 +6,9 @@ namespace Canvas.Models
         public string? Description{get; set;}
         public double TotalAvailablePoints{get; set;}
         public DateTime DueDate{get; set;}
-        Assignment()
+        public Assignment()
         {
-            
+
         }
     }
 }

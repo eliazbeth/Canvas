@@ -8,7 +8,7 @@ namespace Canvas.Models
           public List<string>? Roster{get; set;}
           public List<string>? Assignments{get; set;}
           public List<string>? Modules{get; set;}
-          Course()
+          public Course()
           {
 
           }
