@@ -12,5 +12,10 @@ namespace Canvas.Models
           {
 
           }
+
+        public override string ToString()
+        {
+            return $"({Code}) {Name} - {Description}";
+        }
     }
 }
