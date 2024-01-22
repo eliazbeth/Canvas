@@ -40,13 +40,13 @@ namespace Canvas // Note: actual namespace depends on the project name.
         }
         public static void AddCourse(List<Course> courses)
         {
-                Console.WriteLine("Code:");
+                Console.WriteLine("Course Code:");
                 var code = Console.ReadLine();
 
-                Console.WriteLine("Name:");
+                Console.WriteLine("Course Name:");
                 var name = Console.ReadLine();
 
-                Console.WriteLine("Description:");
+                Console.WriteLine("Course Description:");
                 var description = Console.ReadLine();
 
                 Course myCourse = new Course{Code = code, Name = name, Description = description};
@@ -54,10 +54,10 @@ namespace Canvas // Note: actual namespace depends on the project name.
         }
         public static void AddStudent(List<Person> students)
         {
-                Console.WriteLine("Name:");
+                Console.WriteLine("Student Name:");
                 var name = Console.ReadLine();
 
-                Console.WriteLine("Classification:");
+                Console.WriteLine("Student Classification:");
                 var classification = Console.ReadLine();
 
                 Person myStudent = new Person{Name = name, Classification = classification};
