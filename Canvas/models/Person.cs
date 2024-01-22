@@ -9,5 +9,9 @@ namespace Canvas.Models
         {
 
         }
+        public override string ToString()
+        {
+            return $"{Name} - {Classification}";
+        }
     }
 }
