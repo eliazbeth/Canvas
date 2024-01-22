@@ -35,6 +35,10 @@ namespace Canvas // Note: actual namespace depends on the project name.
             RemoveStudentFromCourse(students[0], myCourse);
             Console.WriteLine(myCourse + " roster:");
             myCourse.Roster.ForEach(Console.WriteLine);
+
+            // Search for course by name
+            if(SearchCourseByName("cop4870", courses))
+                Console.WriteLine("Found cop4870\n");
         }
         public static void AddCourse(List<Course> courses)
         {
@@ -80,5 +84,11 @@ namespace Canvas // Note: actual namespace depends on the project name.
             students.ForEach(Console.WriteLine);
         }
 
+        public static bool SearchCourseByName(string name, List<Course> courses)
+        {
+            if(courses.Find(c => c.Name == name) != null)
+                return true;
+            return false;
+        }
     }
 }
