@@ -38,7 +38,10 @@ namespace Canvas // Note: actual namespace depends on the project name.
 
             // Search for course by name
             if(SearchCourseByName("cop4870", courses))
-                Console.WriteLine("Found cop4870\n");
+                Console.WriteLine("Found course by name");
+            // Search for course by description
+            if(SearchCourseByDescription("full-stack development in c#", courses))
+                Console.WriteLine("Found course by description\n");
         }
         public static void AddCourse(List<Course> courses)
         {
@@ -87,6 +90,12 @@ namespace Canvas // Note: actual namespace depends on the project name.
         public static bool SearchCourseByName(string name, List<Course> courses)
         {
             if(courses.Find(c => c.Name == name) != null)
+                return true;
+            return false;
+        }
+        public static bool SearchCourseByDescription(string description, List<Course> courses)
+        {
+            if(courses.Find(c => c.Description == description) != null)
                 return true;
             return false;
         }
