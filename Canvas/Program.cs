@@ -9,10 +9,8 @@ namespace Canvas // Note: actual namespace depends on the project name.
         {
             List<Course> courses = new List<Course>();
             AddCourse(courses);
-            foreach(Course c in courses)
-            {
-                Console.WriteLine(c);
-            }
+            courses.ForEach(Console.WriteLine);
+            PrintList(courses);
             Console.WriteLine();
             Course myCourse = courses[0];
 
@@ -44,6 +42,13 @@ namespace Canvas // Note: actual namespace depends on the project name.
 
 
         }
+        public static void PrintList<T>(List<T> theList)
+        {
+            foreach (T t in theList)
+            {
+                Console.WriteLine(t);
+            }
+        }
         public static void AddCourse(List<Course> courses)
         {
                 Console.WriteLine("Course Code:");
@@ -69,7 +74,6 @@ namespace Canvas // Note: actual namespace depends on the project name.
                 Person myStudent = new Person{Name = name, Classification = classification};
                 students.Add(myStudent);
         }
-
         public static void AddStudentToCourse(Person student, Course course)
         {
             course.Roster?.Add(student);
