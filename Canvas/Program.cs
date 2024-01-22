@@ -14,6 +14,13 @@ namespace Canvas // Note: actual namespace depends on the project name.
                 Console.WriteLine(c);
             }
 
+            List<Person> students = new List<Person>();
+            AddStudent(students);
+            foreach(Person s in students)
+            {
+                Console.WriteLine(s);
+            }
+
         }
         public static void AddCourse(List<Course> courses)
         {
@@ -28,6 +35,17 @@ namespace Canvas // Note: actual namespace depends on the project name.
 
                 Course myCourse = new Course{Code = code, Name = name, Description = description};
                 courses.Add(myCourse);
+        }
+        public static void AddStudent(List<Person> students)
+        {
+                Console.WriteLine("Name:");
+                var name = Console.ReadLine();
+
+                Console.WriteLine("Classification:");
+                var classification = Console.ReadLine();
+
+                Person myStudent = new Person{Name = name, Classification = classification};
+                students.Add(myStudent);
         }
 
     }
