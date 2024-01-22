@@ -20,7 +20,7 @@ namespace Canvas // Note: actual namespace depends on the project name.
             AddStudent(students);
             AddStudent(students);
             // Print list of students
-            students.ForEach(Console.WriteLine);
+            ListStudents(students);
             Console.WriteLine();
 
             // Create course roster and add students to it
@@ -73,6 +73,11 @@ namespace Canvas // Note: actual namespace depends on the project name.
         public static void ListCourses(List<Course> courses)
         {
             courses.ForEach(Console.WriteLine);
+        }
+
+        public static void ListStudents(List<Person> students)
+        {
+            students.ForEach(Console.WriteLine);
         }
 
     }
