@@ -34,6 +34,12 @@ namespace Canvas // Note: actual namespace depends on the project name.
                 Console.WriteLine(s);
             }
 
+            RemoveStudentFromCourse(students[0], myCourse);
+            Console.WriteLine(myCourse + " roster:");
+            foreach(Person s in myCourse.Roster)
+            {
+                Console.WriteLine(s);
+            }
 
 
 
@@ -67,6 +73,10 @@ namespace Canvas // Note: actual namespace depends on the project name.
         public static void AddStudentToCourse(Person student, Course course)
         {
             course.Roster?.Add(student);
+        }
+        public static void RemoveStudentFromCourse(Person student, Course course)
+        {
+            course.Roster?.Remove(student);
         }
 
     }
