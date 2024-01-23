@@ -1,32 +1,50 @@
 ﻿using System;
 using Canvas.Models;
 
-namespace Canvas // Note: actual namespace depends on the project name.
+namespace Canvas
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            // Create list of courses and add a course to it
             List<Course> courses = new List<Course>();
-            AddCourse(courses);
-            // Print list of courses
-            ListCourses(courses);
-            Console.WriteLine();
-            Course myCourse = courses[0];
-
-            // Create list of students and add a student to it
             List<Person> students = new List<Person>();
-            AddStudent(students);
-            AddStudent(students);
-            // Print list of students
-            ListStudents(students);
-            Console.WriteLine();
 
+            PrintMenu();
+            Console.WriteLine("Choose an option:");
+            var choice = Console.ReadLine();
+            switch(choice)
+            {
+                case "1":   AddCourse(courses);
+                    break;
+                case "2":   AddStudent(students);
+                    break;
+                case "3":
+                    break;
+                case "4":
+                    break;
+                case "5":
+                    break;
+                case "6":
+                    break;
+                case "7":
+                    break;
+                case "8":
+                    break;
+                case "9":
+                    break;
+                case "10":
+                    break;
+                case "11":
+                    break;
+                case "12":
+                    break;
+            }
+
+            /*Course myCourse = courses[0];
             // Create course roster and add students to it
-            myCourse.Roster = new List<Person>();
+            myCourse.Roster = new List<Person>();)
             AddStudentToCourse(students[0], myCourse);
-            AddStudentToCourse(students[1], myCourse);
             // Print course roster
             Console.WriteLine(myCourse + " roster:");
             myCourse.Roster.ForEach(Console.WriteLine);
@@ -45,6 +63,24 @@ namespace Canvas // Note: actual namespace depends on the project name.
             // Search for student by name
             if(SearchStudentByName("John Snow", students))
                 Console.WriteLine("Found student by name\n");
+            */
+        }
+
+        public static void PrintMenu()
+        {
+            Console.WriteLine("1. Add a course");
+            Console.WriteLine("2. List courses");
+            Console.WriteLine("3. Add a student to a course");
+            Console.WriteLine("4. Remove a student from a course");
+            Console.WriteLine("5. Search for a course");
+            Console.WriteLine("6. Add an assignment to a course");
+            Console.WriteLine("7. Update course information");
+            Console.WriteLine();
+            Console.WriteLine("8. Add a student");
+            Console.WriteLine("9. List students");
+            Console.WriteLine("10. Search for a student");
+            Console.WriteLine("11. List courses taken by a student");
+            Console.WriteLine("12. Update student information");
         }
         public static void AddCourse(List<Course> courses)
         {
