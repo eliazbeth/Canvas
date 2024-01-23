@@ -9,36 +9,43 @@ namespace Canvas
         {
             List<Course> courses = new List<Course>();
             List<Person> students = new List<Person>();
-
             PrintMenu();
             Console.WriteLine("Choose an option:");
             var choice = Console.ReadLine();
-            switch(choice)
-            {
-                case "1":   AddCourse(courses);
-                    break;
-                case "2":   AddStudent(students);
-                    break;
-                case "3":
-                    break;
-                case "4":
-                    break;
-                case "5":
-                    break;
-                case "6":
-                    break;
-                case "7":
-                    break;
-                case "8":
-                    break;
-                case "9":
-                    break;
-                case "10":
-                    break;
-                case "11":
-                    break;
-                case "12":
-                    break;
+            while(choice != "0")
+            {   
+                switch(choice)
+                {
+                    case "1":   AddCourse(courses);
+                        break;
+                    case "2":   AddStudent(students);
+                        break;
+                    case "3":
+                        break;
+                    case "4":
+                        break;
+                    case "5":
+                        break;
+                    case "6":
+                        break;
+                    case "7":
+                        break;
+                    case "8":
+                        break;
+                    case "9":
+                        break;
+                    case "10":
+                        break;
+                    case "11":
+                        break;
+                    case "12":
+                        break;
+                    case "0":
+                        break;
+                }
+                PrintMenu();
+                Console.WriteLine("Choose an option:");
+                choice = Console.ReadLine();
             }
 
             /*Course myCourse = courses[0];
@@ -81,6 +88,8 @@ namespace Canvas
             Console.WriteLine("10. Search for a student");
             Console.WriteLine("11. List courses taken by a student");
             Console.WriteLine("12. Update student information");
+            Console.WriteLine();
+            Console.WriteLine("0. Exit menu");
         }
         public static void AddCourse(List<Course> courses)
         {
