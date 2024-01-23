@@ -18,9 +18,9 @@ namespace Canvas
                 {
                     case "1":   AddCourse(courses);
                         break;
-                    case "2":   AddStudent(students);
+                    case "2":   ListCourses(courses);
                         break;
-                    case "3":
+                    case "3":   
                         break;
                     case "4":
                         break;
@@ -30,9 +30,9 @@ namespace Canvas
                         break;
                     case "7":
                         break;
-                    case "8":
+                    case "8":   AddStudent(students);
                         break;
-                    case "9":
+                    case "9":   ListStudents(students);
                         break;
                     case "10":
                         break;
@@ -127,12 +127,16 @@ namespace Canvas
 
         public static void ListCourses(List<Course> courses)
         {
+            Console.WriteLine("Courses:");
             courses.ForEach(Console.WriteLine);
+            Console.WriteLine();
         }
 
         public static void ListStudents(List<Person> students)
         {
+            Console.WriteLine("Students:");
             students.ForEach(Console.WriteLine);
+            Console.WriteLine();
         }
 
         public static bool SearchCourseByName(string name, List<Course> courses)
