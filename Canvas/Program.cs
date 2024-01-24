@@ -20,9 +20,9 @@ namespace Canvas
                         break;
                     case "2":   ListCourses(courses);
                         break;
-                    case "3":   
+                    case "3":   AddStudentToCourse(students, courses);
                         break;
-                    case "4":
+                    case "4":   RemoveStudentFromCourse(students, courses);
                         break;
                     case "5":
                         break;
@@ -47,30 +47,6 @@ namespace Canvas
                 Console.WriteLine("Choose an option:");
                 choice = Console.ReadLine();
             }
-
-            /*Course myCourse = courses[0];
-            // Create course roster and add students to it
-            myCourse.Roster = new List<Person>();)
-            AddStudentToCourse(students[0], myCourse);
-            // Print course roster
-            Console.WriteLine(myCourse + " roster:");
-            myCourse.Roster.ForEach(Console.WriteLine);
-
-            // Remove student from roster and print it again
-            RemoveStudentFromCourse(students[0], myCourse);
-            Console.WriteLine(myCourse + " roster:");
-            myCourse.Roster.ForEach(Console.WriteLine);
-
-            // Search for course by name
-            if(SearchCourseByName("cop4870", courses))
-                Console.WriteLine("Found course by name");
-            // Search for course by description
-            if(SearchCourseByDescription("full-stack development in c#", courses))
-                Console.WriteLine("Found course by description\n");
-            // Search for student by name
-            if(SearchStudentByName("John Snow", students))
-                Console.WriteLine("Found student by name\n");
-            */
         }
 
         public static void PrintMenu()
@@ -116,26 +92,69 @@ namespace Canvas
                 Person myStudent = new Person{Name = name, Classification = classification};
                 students.Add(myStudent);
         }
-        public static void AddStudentToCourse(Person student, Course course)
+        public static void AddStudentToCourse(List<Person> students, List<Course> courses)
         {
-            course.Roster?.Add(student);
+            ListCourses(courses);
+            Console.WriteLine("Choose a course: ");
+            var course = Console.ReadLine();
+            var courseInt = int.Parse(course ?? "0");
+            courseInt--;
+            
+            ListStudents(students);
+            Console.WriteLine("Choose a student: ");
+            var student = Console.ReadLine();
+            var studentInt = int.Parse(student ?? "0");
+            studentInt--;
+
+            courses[courseInt].Roster?.Add(students[studentInt]);
+            Console.WriteLine($"Roster for {courses[courseInt].Name}:");
+            foreach(Person s in courses[courseInt].Roster)
+            {
+                Console.WriteLine(s);
+            }
         }
-        public static void RemoveStudentFromCourse(Person student, Course course)
+        public static void RemoveStudentFromCourse(List<Person> students, List<Course> courses)
         {
-            course.Roster?.Remove(student);
+            ListCourses(courses);
+            Console.WriteLine("Choose a course: ");
+            var course = Console.ReadLine();
+            var courseInt = int.Parse(course ?? "0");
+            courseInt--;
+
+            ListStudents(courses[courseInt].Roster);
+            Console.WriteLine("Choose a student: ");
+            var student = Console.ReadLine();
+            var studentInt = int.Parse(student ?? "0");
+            studentInt--;
+            Person theStudent = courses[courseInt].Roster[studentInt];
+
+            courses[courseInt].Roster?.Remove(theStudent);
+            Console.WriteLine($"Roster for {courses[courseInt].Name}:");
+            foreach(Person s in courses[courseInt].Roster)
+            {
+                Console.WriteLine(s);
+            }
         }
 
         public static void ListCourses(List<Course> courses)
         {
+            int count = 1;
             Console.WriteLine("Courses:");
-            courses.ForEach(Console.WriteLine);
+            foreach(Course c in courses)
+            {
+                Console.WriteLine($"{count++}. {c}");
+            }
             Console.WriteLine();
         }
 
         public static void ListStudents(List<Person> students)
         {
+            int count = 1;
             Console.WriteLine("Students:");
-            students.ForEach(Console.WriteLine);
+            foreach(Person s in students)
+            {
+                Console.WriteLine($"{count++}. {s}");
+            }
             Console.WriteLine();
         }
 
