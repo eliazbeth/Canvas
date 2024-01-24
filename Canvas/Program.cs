@@ -24,7 +24,7 @@ namespace Canvas
                         break;
                     case "4":   RemoveStudentFromCourse(students, courses);
                         break;
-                    case "5":
+                    case "5":   SearchCourse(courses);
                         break;
                     case "6":
                         break;
@@ -158,6 +158,34 @@ namespace Canvas
             Console.WriteLine();
         }
 
+        public static void SearchCourse(List<Course> courses)
+        {
+            Console.WriteLine($"Enter 's' to search by name or 'd' to search by description: ");
+            var choice = Console.ReadLine();
+          
+            if(choice == "s")
+            {
+                Console.WriteLine("Enter the name to search for:");
+                var name = Console.ReadLine();
+                if(SearchCourseByName(name ?? " ", courses))
+                {
+                    Console.WriteLine("Course was found.");
+                }
+                else 
+                    Console.WriteLine("Course was not found.");
+            }   
+            if(choice == "d")
+            {
+                Console.WriteLine("Enter the description to search for:");
+                var description = Console.ReadLine();
+                if(SearchCourseByDescription(description ?? " ", courses))
+                {
+                    Console.WriteLine("Course was found.");
+                }
+                else 
+                    Console.WriteLine("Course was not found.");
+            }  
+        }
         public static bool SearchCourseByName(string name, List<Course> courses)
         {
             if(courses.Find(c => c.Name == name) != null)
