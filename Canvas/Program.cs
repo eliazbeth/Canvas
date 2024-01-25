@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using Canvas.Models;
 
 namespace Canvas
@@ -26,7 +27,7 @@ namespace Canvas
                         break;
                     case "5":   SearchCourse(courses);
                         break;
-                    case "6":
+                    case "6":   AddAssignment(courses);
                         break;
                     case "7":
                         break;
@@ -204,6 +205,46 @@ namespace Canvas
             if(students.Find(s => s.Name == name) != null)
                 return true;
             return false;
+        }
+
+        public static void AddAssignment(List<Course> courses)
+        {
+            ListCourses(courses);
+            Console.WriteLine("Choose a course: ");
+            var course = Console.ReadLine();
+            var courseInt = int.Parse(course ?? "0");
+            courseInt--;
+
+            Console.WriteLine("Enter name for assignment ");
+            var name = Console.ReadLine();
+            Console.WriteLine("Enter description: ");
+            var description = Console.ReadLine();
+            Console.WriteLine("Enter available points: ");
+            var points = Console.ReadLine();   
+            double pointsDbl = double.Parse(points ?? "100"); 
+           /* Console.WriteLine("Enter the due date in the form 'yyyy[ENTER]mm[ENTER]dd'");
+            var year = Console.ReadLine();
+            var yearInt = int.Parse(year ?? "0");
+            var month = Console.ReadLine();
+            var monthInt = int.Parse(month ?? "0");
+            var day = Console.ReadLine();
+            var dayInt = int.Parse(day ?? "0");
+            Console.WriteLine("Enter the time it is due in the form 'hour[ENTER]minute'");
+            var hour = Console.ReadLine();
+            var hourInt = int.Parse(year ?? "0");
+            var minute = Console.ReadLine();
+            var minuteInt = int.Parse(year ?? "0");*/
+            Console.WriteLine("Enter the due date and time in the form 'dd/mm/yy hh:mm:ss'");
+            var datetimeStr = Console.ReadLine();
+            DateTime datetime = DateTime.Parse(datetimeStr ?? "0");
+
+            Assignment assignment = new Assignment{Name = name, Description = description, TotalAvailablePoints = pointsDbl, DueDate = datetime};
+            courses[courseInt].Assignments.Add(assignment);
+            Console.WriteLine($"Assignments for {courses[courseInt].Name}:");
+            foreach(Assignment a in courses[courseInt].Assignments)
+            {
+                Console.WriteLine($"{a.Name} Due {a.DueDate}");
+            }
         }
     }
 }
