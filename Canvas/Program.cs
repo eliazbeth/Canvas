@@ -95,43 +95,24 @@ namespace Canvas
         }
         public static void AddStudentToCourse(List<Person> students, List<Course> courses)
         {
-            ListCourses(courses);
-            Console.WriteLine("Choose a course: ");
-            var course = Console.ReadLine();
-            var courseInt = int.Parse(course ?? "0");
-            courseInt--;
-            
-            ListStudents(students);
-            Console.WriteLine("Choose a student: ");
-            var student = Console.ReadLine();
-            var studentInt = int.Parse(student ?? "0");
-            studentInt--;
+            Course course = ChooseACourse(courses);
+            Person student = ChooseAStudent(students);
 
-            courses[courseInt].Roster?.Add(students[studentInt]);
-            Console.WriteLine($"Roster for {courses[courseInt].Name}:");
-            foreach(Person s in courses[courseInt].Roster)
+            course.Roster.Add(student);
+            Console.WriteLine($"Roster for {course.Name}:");
+            foreach(Person s in course.Roster)
             {
                 Console.WriteLine(s);
             }
         }
         public static void RemoveStudentFromCourse(List<Person> students, List<Course> courses)
         {
-            ListCourses(courses);
-            Console.WriteLine("Choose a course: ");
-            var course = Console.ReadLine();
-            var courseInt = int.Parse(course ?? "0");
-            courseInt--;
+            Course course = ChooseACourse(courses); 
+            Person student = ChooseAStudent(course.Roster);
 
-            ListStudents(courses[courseInt].Roster);
-            Console.WriteLine("Choose a student: ");
-            var student = Console.ReadLine();
-            var studentInt = int.Parse(student ?? "0");
-            studentInt--;
-            Person theStudent = courses[courseInt].Roster[studentInt];
-
-            courses[courseInt].Roster?.Remove(theStudent);
-            Console.WriteLine($"Roster for {courses[courseInt].Name}:");
-            foreach(Person s in courses[courseInt].Roster)
+            course.Roster.Remove(student);
+            Console.WriteLine($"Roster for {course.Name}:");
+            foreach(Person s in course.Roster)
             {
                 Console.WriteLine(s);
             }
@@ -212,11 +193,7 @@ namespace Canvas
 
         public static void AddAssignment(List<Course> courses)
         {
-            ListCourses(courses);
-            Console.WriteLine("Choose a course: ");
-            var course = Console.ReadLine();
-            var courseInt = int.Parse(course ?? "0");
-            courseInt--;
+            Course course = ChooseACourse(courses);
 
             Console.WriteLine("Enter name for assignment ");
             var name = Console.ReadLine();
@@ -230,12 +207,31 @@ namespace Canvas
             DateTime datetime = DateTime.Parse(datetimeStr ?? "0");
 
             Assignment assignment = new Assignment{Name = name, Description = description, TotalAvailablePoints = pointsDbl, DueDate = datetime};
-            courses[courseInt].Assignments.Add(assignment);
-            Console.WriteLine($"Assignments for {courses[courseInt].Name}:");
-            foreach(Assignment a in courses[courseInt].Assignments)
+            course.Assignments.Add(assignment);
+            Console.WriteLine($"Assignments for {course.Name}:");
+            foreach(Assignment a in course.Assignments)
             {
                 Console.WriteLine($"{a.Name} Due {a.DueDate}");
             }
+        }
+        public static Course ChooseACourse(List<Course> courses)
+        {
+            ListCourses(courses);
+            Console.WriteLine("Choose a course: ");
+            var course = Console.ReadLine();
+            var courseInt = int.Parse(course ?? "0");
+            courseInt--;
+            return courses[courseInt];
+        }
+
+        public static Person ChooseAStudent(List<Person> students)
+        {
+            ListStudents(students);
+            Console.WriteLine("Choose a student: ");
+            var student = Console.ReadLine();
+            var studentInt = int.Parse(student ?? "0");
+            studentInt--;
+            return students[studentInt];
         }
     }
 }
