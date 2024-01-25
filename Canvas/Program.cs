@@ -29,7 +29,7 @@ namespace Canvas
                         break;
                     case "6":   AddAssignment(courses);
                         break;
-                    case "7":
+                    case "7":   UpdateCourse(courses);
                         break;
                     case "8":   AddStudent(students);
                         break;
@@ -180,7 +180,6 @@ namespace Canvas
                 return true;
             return false;
         }
-
         public static void SearchStudentByName(List<Person> students)
         {
             Console.WriteLine($"Enter student name to search: ");
@@ -190,7 +189,6 @@ namespace Canvas
             else
                 Console.WriteLine("Student was not found.");
         }
-
         public static void AddAssignment(List<Course> courses)
         {
             Course course = ChooseACourse(courses);
@@ -212,6 +210,30 @@ namespace Canvas
             foreach(Assignment a in course.Assignments)
             {
                 Console.WriteLine($"{a.Name} Due {a.DueDate}");
+            }
+        }
+        public static void UpdateCourse(List<Course> courses)
+        {
+            Course course = ChooseACourse(courses);
+            Console.WriteLine("Choose what to update - enter 'n' for name, 'd' for description, or 'c' for code: ");
+            var choice = Console.ReadLine();
+            if(choice == "n")
+            {
+                Console.WriteLine("Enter the new name: ");
+                var name = Console.ReadLine();
+                course.Name = name;
+            }
+            else if(choice == "d")
+            {
+                Console.WriteLine("Enter the new description: ");
+                var description = Console.ReadLine();
+                course.Description = description;
+            }
+            else if(choice == "c")
+            {
+                Console.WriteLine("Enter the new code: ");
+                var code = Console.ReadLine();
+                course.Code = code;
             }
         }
         public static Course ChooseACourse(List<Course> courses)
