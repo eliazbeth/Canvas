@@ -39,7 +39,7 @@ namespace Canvas
                         break;
                     case "11":
                         break;
-                    case "12":
+                    case "12":  UpdateStudent(students);
                         break;
                     case "0":
                         break;
@@ -234,6 +234,24 @@ namespace Canvas
                 Console.WriteLine("Enter the new code: ");
                 var code = Console.ReadLine();
                 course.Code = code;
+            }
+        }
+        public static void UpdateStudent(List<Person> students)
+        {
+            Person student = ChooseAStudent(students);
+            Console.WriteLine("Choose what to update - enter 'n' for name or 'c' for classification: ");
+            var choice = Console.ReadLine();
+            if(choice == "n")
+            {
+                Console.WriteLine("Enter the new name: ");
+                var name = Console.ReadLine();
+                student.Name = name;
+            }
+            else if(choice == "c")
+            {
+                Console.WriteLine("Enter the new classification: ");
+                var classification = Console.ReadLine();
+                student.Classification = classification;
             }
         }
         public static Course ChooseACourse(List<Course> courses)
