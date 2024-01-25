@@ -142,10 +142,10 @@ namespace Canvas
 
         public static void SearchCourse(List<Course> courses)
         {
-            Console.WriteLine($"Enter 's' to search by name or 'd' to search by description: ");
+            Console.WriteLine($"Enter 'n' to search by name or 'd' to search by description: ");
             var choice = Console.ReadLine();
           
-            if(choice == "s")
+            if(choice == "n")
             {
                 Console.WriteLine("Enter the name to search for:");
                 var name = Console.ReadLine();
@@ -275,7 +275,6 @@ namespace Canvas
         }
         public static Course ChooseACourse(List<Course> courses)
         {
-          //  ListCourses(courses);
             courses.ForEach(Console.WriteLine);
             Console.WriteLine("Choose a course: ");
             var course = Console.ReadLine();
@@ -286,7 +285,6 @@ namespace Canvas
 
         public static Person ChooseAStudent(List<Person> students)
         {
-           // ListStudents(students);
             students.ForEach(Console.WriteLine);
             Console.WriteLine("Choose a student: ");
             var student = Console.ReadLine();
