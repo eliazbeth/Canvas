@@ -124,7 +124,7 @@ namespace Canvas
             Console.WriteLine("Courses:");
             foreach(Course c in courses)
             {
-                Console.WriteLine($"{count++}. {c}");
+                Console.WriteLine($"{count++}. {c.Code} - {c.Name}");
             }
             Console.WriteLine();
         }
@@ -275,7 +275,8 @@ namespace Canvas
         }
         public static Course ChooseACourse(List<Course> courses)
         {
-            ListCourses(courses);
+          //  ListCourses(courses);
+            courses.ForEach(Console.WriteLine);
             Console.WriteLine("Choose a course: ");
             var course = Console.ReadLine();
             var courseInt = int.Parse(course ?? "0");
@@ -285,7 +286,8 @@ namespace Canvas
 
         public static Person ChooseAStudent(List<Person> students)
         {
-            ListStudents(students);
+           // ListStudents(students);
+            students.ForEach(Console.WriteLine);
             Console.WriteLine("Choose a student: ");
             var student = Console.ReadLine();
             var studentInt = int.Parse(student ?? "0");
