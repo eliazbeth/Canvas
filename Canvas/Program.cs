@@ -35,7 +35,7 @@ namespace Canvas
                         break;
                     case "9":   ListStudents(students);
                         break;
-                    case "10":
+                    case "10":  SearchStudentByName(students);
                         break;
                     case "11":
                         break;
@@ -200,11 +200,14 @@ namespace Canvas
             return false;
         }
 
-        public static bool SearchStudentByName(string name, List<Person> students)
+        public static void SearchStudentByName(List<Person> students)
         {
+            Console.WriteLine($"Enter student name to search: ");
+            var name = Console.ReadLine();
             if(students.Find(s => s.Name == name) != null)
-                return true;
-            return false;
+                Console.WriteLine("Student was found.");
+            else
+                Console.WriteLine("Student was not found.");
         }
 
         public static void AddAssignment(List<Course> courses)
@@ -222,18 +225,6 @@ namespace Canvas
             Console.WriteLine("Enter available points: ");
             var points = Console.ReadLine();   
             double pointsDbl = double.Parse(points ?? "100"); 
-           /* Console.WriteLine("Enter the due date in the form 'yyyy[ENTER]mm[ENTER]dd'");
-            var year = Console.ReadLine();
-            var yearInt = int.Parse(year ?? "0");
-            var month = Console.ReadLine();
-            var monthInt = int.Parse(month ?? "0");
-            var day = Console.ReadLine();
-            var dayInt = int.Parse(day ?? "0");
-            Console.WriteLine("Enter the time it is due in the form 'hour[ENTER]minute'");
-            var hour = Console.ReadLine();
-            var hourInt = int.Parse(year ?? "0");
-            var minute = Console.ReadLine();
-            var minuteInt = int.Parse(year ?? "0");*/
             Console.WriteLine("Enter the due date and time in the form 'dd/mm/yy hh:mm:ss'");
             var datetimeStr = Console.ReadLine();
             DateTime datetime = DateTime.Parse(datetimeStr ?? "0");
