@@ -37,7 +37,7 @@ namespace Canvas
                         break;
                     case "10":  SearchStudentByName(students);
                         break;
-                    case "11":
+                    case "11":  ListCoursesTakenByStudent(students, courses);
                         break;
                     case "12":  UpdateStudent(students);
                         break;
@@ -167,6 +167,7 @@ namespace Canvas
                 else 
                     Console.WriteLine("Course was not found.");
             }  
+            Console.WriteLine();
         }
         public static bool SearchCourseByName(string name, List<Course> courses)
         {
@@ -188,6 +189,7 @@ namespace Canvas
                 Console.WriteLine("Student was found.");
             else
                 Console.WriteLine("Student was not found.");
+                Console.WriteLine();
         }
         public static void AddAssignment(List<Course> courses)
         {
@@ -211,6 +213,7 @@ namespace Canvas
             {
                 Console.WriteLine($"{a.Name} Due {a.DueDate}");
             }
+            Console.WriteLine();
         }
         public static void UpdateCourse(List<Course> courses)
         {
@@ -235,6 +238,7 @@ namespace Canvas
                 var code = Console.ReadLine();
                 course.Code = code;
             }
+            Console.WriteLine("Course updated.\n");
         }
         public static void UpdateStudent(List<Person> students)
         {
@@ -253,6 +257,21 @@ namespace Canvas
                 var classification = Console.ReadLine();
                 student.Classification = classification;
             }
+            Console.WriteLine("Student updated.\n");
+        }
+        public static void ListCoursesTakenByStudent(List<Person> students, List<Course> courses)
+        {
+            Person student = ChooseAStudent(students);
+            Console.WriteLine($"Courses being taken by {student.Name}:");
+            int count = 1;
+            foreach(Course c in courses)
+            {
+                if(c.Roster.Contains(student))
+                {
+                    Console.WriteLine($"{count++}. {c.Code}-{c.Name}");
+                }
+            }
+            Console.WriteLine();
         }
         public static Course ChooseACourse(List<Course> courses)
         {
