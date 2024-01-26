@@ -44,6 +44,7 @@ namespace Canvas
                     case "0":
                         break;
                 }
+                Console.WriteLine();
                 PrintMenu();
                 Console.WriteLine("Choose an option:");
                 choice = Console.ReadLine();
