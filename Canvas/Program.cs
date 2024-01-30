@@ -30,7 +30,7 @@ namespace Canvas
                         break;
                     case "6":   AddAssignment(courses);
                         break;
-                    case "7":   UpdateCourse(courses);
+                    case "7":   UpdateCourse();
                         break;
                     case "8":   AddStudent();
                         break;
@@ -40,7 +40,7 @@ namespace Canvas
                         break;
                     case "11":  ListCoursesTakenByStudent(students, courses);
                         break;
-                    case "12":  UpdateStudent(students);
+                    case "12":  UpdateStudent();
                         break;
                     case "0":
                         break;
@@ -97,8 +97,8 @@ namespace Canvas
         }
         public static void AddStudentToCourse(List<Person> students, List<Course> courses)
         {
-            Course course = ChooseACourse(courses);
-            Person student = ChooseAStudent(students);
+            Course course = ChooseACourse();
+            Person student = ChooseAStudent();
 
             course.Roster.Add(student);
             Console.WriteLine($"Roster for {course.Name}:");
@@ -109,8 +109,8 @@ namespace Canvas
         }
         public static void RemoveStudentFromCourse(List<Person> students, List<Course> courses)
         {
-            Course course = ChooseACourse(courses); 
-            Person student = ChooseAStudent(course.Roster);
+            Course course = ChooseACourse(); 
+            Person student = ChooseAStudent();
 
             course.Roster.Remove(student);
             Console.WriteLine($"Roster for {course.Name}:");
@@ -151,7 +151,7 @@ namespace Canvas
         }
         public static void AddAssignment(List<Course> courses)
         {
-            Course course = ChooseACourse(courses);
+            Course course = ChooseACourse();
 
             Console.WriteLine("Enter name for assignment ");
             var name = Console.ReadLine();
@@ -173,9 +173,9 @@ namespace Canvas
             }
             Console.WriteLine();
         }
-        public static void UpdateCourse(List<Course> courses)
+        public static void UpdateCourse()
         {
-            Course course = ChooseACourse(courses);
+            Course course = ChooseACourse();
             Console.WriteLine("Choose what to update - enter 'n' for name, 'd' for description, or 'c' for code: ");
             var choice = Console.ReadLine();
             string? updated;
@@ -192,9 +192,9 @@ namespace Canvas
             CourseService.Current.UpdateCourse(choice ?? " ", updated ?? " ", course);
             Console.WriteLine("Course updated.\n");
         }
-        public static void UpdateStudent(List<Person> students)
+        public static void UpdateStudent()
         {
-            Person student = ChooseAStudent(students);
+            Person student = ChooseAStudent();
             Console.WriteLine("Choose what to update - enter 'n' for name or 'c' for classification: ");
             var choice = Console.ReadLine();
             string? updated;
@@ -213,7 +213,7 @@ namespace Canvas
         }
         public static void ListCoursesTakenByStudent(List<Person> students, List<Course> courses)
         {
-            Person student = ChooseAStudent(students);
+            Person student = ChooseAStudent();
             Console.WriteLine($"Courses being taken by {student.Name}:");
             int count = 1;
             foreach(Course c in courses)
@@ -225,7 +225,7 @@ namespace Canvas
             }
             Console.WriteLine();
         }
-        public static Course ChooseACourse(List<Course> courses)
+        public static Course ChooseACourse()
         {
             ListCoursesFull();
             Console.WriteLine("Choose a course: ");
@@ -235,7 +235,7 @@ namespace Canvas
             return CourseService.Current.CourseAt(courseInt);
         }
 
-        public static Person ChooseAStudent(List<Person> students)
+        public static Person ChooseAStudent()
         {
             ListStudents();
             Console.WriteLine("Choose a student: ");
