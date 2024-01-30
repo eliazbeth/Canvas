@@ -28,9 +28,16 @@ namespace Canvas.Services
         {
             students = new List<Person>();
         }
+
         public void AddStudent(Person student)
         {
             students.Add(student);
+        }
+
+        public void ListStudents()
+        {
+            int count = 0;
+            students.ForEach(s => Console.WriteLine($"{++count}. {s}"));
         }
     }
 }

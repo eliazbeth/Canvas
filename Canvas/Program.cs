@@ -34,7 +34,7 @@ namespace Canvas
                         break;
                     case "8":   AddStudent();
                         break;
-                    case "9":   ListStudents(students);
+                    case "9":   ListStudents();
                         break;
                     case "10":  SearchStudentByName(students);
                         break;
@@ -124,15 +124,9 @@ namespace Canvas
             CourseService.Current.ListCourses();
         }
 
-        public static void ListStudents(List<Person> students)
+        public static void ListStudents()
         {
-            int count = 1;
-            Console.WriteLine("Students:");
-            foreach(Person s in students)
-            {
-                Console.WriteLine($"{count++}. {s}");
-            }
-            Console.WriteLine();
+            PersonService.Current.ListStudents();
         }
 
         public static void SearchCourse()
