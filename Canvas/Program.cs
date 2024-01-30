@@ -36,7 +36,7 @@ namespace Canvas
                         break;
                     case "9":   ListStudents();
                         break;
-                    case "10":  SearchStudentByName(students);
+                    case "10":  SearchStudentByName();
                         break;
                     case "11":  ListCoursesTakenByStudent(students, courses);
                         break;
@@ -137,7 +137,7 @@ namespace Canvas
             found.ToList().ForEach(Console.WriteLine);
         }
         
-        public static void SearchStudentByName(List<Person> students)
+        public static void SearchStudentByName()
         {
             Console.WriteLine("Enter a name to search for: ");
             var query = Console.ReadLine();
@@ -229,24 +229,22 @@ namespace Canvas
         }
         public static Course ChooseACourse(List<Course> courses)
         {
-            int count = 1;
-            courses.ForEach(c => Console.WriteLine($"{count++}. {c}"));
+            ListCourses();
             Console.WriteLine("Choose a course: ");
             var course = Console.ReadLine();
             var courseInt = int.Parse(course ?? "0");
             courseInt--;
-            return courses[courseInt];
+            return CourseService.Current.CourseAt(courseInt);
         }
 
         public static Person ChooseAStudent(List<Person> students)
         {
-            int count = 1;
-            students.ForEach(c => Console.WriteLine($"{count++}. {c}"));
+            ListStudents();
             Console.WriteLine("Choose a student: ");
             var student = Console.ReadLine();
             var studentInt = int.Parse(student ?? "0");
             studentInt--;
-            return students[studentInt];
+            return PersonService.Current.StudentAt(studentInt);
         }
     }
 }

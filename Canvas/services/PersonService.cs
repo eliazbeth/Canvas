@@ -46,5 +46,10 @@ namespace Canvas.Services
             this.query = query;
             return Students;
         }
+        
+        public Person StudentAt(int index)
+        {
+            return students[index];
+        }
     }
 }
