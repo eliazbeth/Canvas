@@ -10,7 +10,6 @@ namespace Canvas
         static void Main(string[] args)
         {
             List<Course> courses = new List<Course>();
-            var coursesCS = CourseService.Current;
             List<Person> students = new List<Person>();
             PrintMenu();
             Console.WriteLine("Choose an option:");
@@ -21,7 +20,7 @@ namespace Canvas
                 {
                     case "1":   AddCourse();
                         break;
-                    case "2":   ListCourses(courses);
+                    case "2":   ListCourses();
                         break;
                     case "3":   AddStudentToCourse(students, courses);
                         break;
@@ -120,16 +119,9 @@ namespace Canvas
                 Console.WriteLine(s);
             }
         }
-
-        public static void ListCourses(List<Course> courses)
+        public static void ListCourses()
         {
-            int count = 1;
-            Console.WriteLine("Courses:");
-            foreach(Course c in courses)
-            {
-                Console.WriteLine($"{count++}. {c.Code} - {c.Name}");
-            }
-            Console.WriteLine();
+            CourseService.Current.ListCourses();
         }
 
         public static void ListStudents(List<Person> students)
@@ -150,18 +142,7 @@ namespace Canvas
             var found = CourseService.Current.Search(query ?? string.Empty);
             found.ToList().ForEach(Console.WriteLine);
         }
-        public static bool SearchCourseByName(string name, List<Course> courses)
-        {
-            if(courses.Find(c => c.Name == name) != null)
-                return true;
-            return false;
-        }
-        public static bool SearchCourseByDescription(string description, List<Course> courses)
-        {
-            if(courses.Find(c => c.Description == description) != null)
-                return true;
-            return false;
-        }
+        
         public static void SearchStudentByName(List<Person> students)
         {
             Console.WriteLine($"Enter student name to search: ");
