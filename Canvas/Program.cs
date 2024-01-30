@@ -174,24 +174,18 @@ namespace Canvas
             Course course = ChooseACourse(courses);
             Console.WriteLine("Choose what to update - enter 'n' for name, 'd' for description, or 'c' for code: ");
             var choice = Console.ReadLine();
-            if(choice == "n")
+            string? updated;
+            switch(choice)
             {
-                Console.WriteLine("Enter the new name: ");
-                var name = Console.ReadLine();
-                course.Name = name;
+                case "n": Console.WriteLine("Enter the new name: ");
+                    break;
+                case "d": Console.WriteLine("Enter the new description: ");
+                    break;
+                case "c": Console.WriteLine("Enter the new code: ");
+                    break;
             }
-            else if(choice == "d")
-            {
-                Console.WriteLine("Enter the new description: ");
-                var description = Console.ReadLine();
-                course.Description = description;
-            }
-            else if(choice == "c")
-            {
-                Console.WriteLine("Enter the new code: ");
-                var code = Console.ReadLine();
-                course.Code = code;
-            }
+            updated = Console.ReadLine();
+            CourseService.Current.UpdateCourse(choice ?? " ", updated ?? " ", course);
             Console.WriteLine("Course updated.\n");
         }
         public static void UpdateStudent(List<Person> students)

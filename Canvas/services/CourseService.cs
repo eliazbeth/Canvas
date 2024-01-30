@@ -53,5 +53,18 @@ namespace Canvas.Services
         {
             return courses[index];
         }
+
+        public void UpdateCourse(string choice, string updated, Course course)
+        {
+            switch(choice)
+            {
+                case "n": course.Name = updated;
+                    break;
+                case "d": course.Description = updated;
+                    break;
+                case "c": course.Code = updated;
+                    break;
+            }
+        }
     }
 }
