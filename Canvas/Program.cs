@@ -139,13 +139,11 @@ namespace Canvas
         
         public static void SearchStudentByName(List<Person> students)
         {
-            Console.WriteLine($"Enter student name to search: ");
-            var name = Console.ReadLine();
-            if(students.Find(s => s.Name == name) != null)
-                Console.WriteLine("Student was found.");
-            else
-                Console.WriteLine("Student was not found.");
-                Console.WriteLine();
+            Console.WriteLine("Enter a name to search for: ");
+            var query = Console.ReadLine();
+            var found = PersonService.Current.Search(query ?? string.Empty);
+            Console.WriteLine("Found:");
+            found.ToList().ForEach(Console.WriteLine);
         }
         public static void AddAssignment(List<Course> courses)
         {

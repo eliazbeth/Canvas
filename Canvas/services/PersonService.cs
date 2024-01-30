@@ -5,6 +5,7 @@ namespace Canvas.Services
     public class PersonService
     {
         private List<Person> students;
+        private string? query; 
         private static PersonService? instance;
         public static PersonService Current
         {
@@ -20,7 +21,7 @@ namespace Canvas.Services
         {
             get
             {
-                return students;
+                return students.Where(s => (s.Name ?? " ").ToLower().Contains(query?.ToLower() ?? string.Empty));
             }
         }
 
@@ -38,6 +39,12 @@ namespace Canvas.Services
         {
             int count = 0;
             students.ForEach(s => Console.WriteLine($"{++count}. {s}"));
+        }
+
+        public IEnumerable<Person> Search(string query)
+        {
+            this.query = query;
+            return Students;
         }
     }
 }
