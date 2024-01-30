@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using Canvas.Models;
+using Canvas.Services;
 
 namespace Canvas
 {
@@ -9,6 +10,7 @@ namespace Canvas
         static void Main(string[] args)
         {
             List<Course> courses = new List<Course>();
+            var coursesCS = CourseService.Current;
             List<Person> students = new List<Person>();
             PrintMenu();
             Console.WriteLine("Choose an option:");
@@ -17,7 +19,7 @@ namespace Canvas
             {   
                 switch(choice)
                 {
-                    case "1":   AddCourse(courses);
+                    case "1":   AddCourse();
                         break;
                     case "2":   ListCourses(courses);
                         break;
@@ -25,7 +27,7 @@ namespace Canvas
                         break;
                     case "4":   RemoveStudentFromCourse(students, courses);
                         break;
-                    case "5":   SearchCourse(courses);
+                    case "5":   SearchCourse();
                         break;
                     case "6":   AddAssignment(courses);
                         break;
@@ -69,7 +71,7 @@ namespace Canvas
             Console.WriteLine();
             Console.WriteLine("0. Exit menu");
         }
-        public static void AddCourse(List<Course> courses)
+        public static void AddCourse()
         {
                 Console.WriteLine("Course Code:");
                 var code = Console.ReadLine();
@@ -81,7 +83,7 @@ namespace Canvas
                 var description = Console.ReadLine();
 
                 Course myCourse = new Course{Code = code, Name = name, Description = description};
-                courses.Add(myCourse);
+                CourseService.Current.Add(myCourse);
         }
         public static void AddStudent(List<Person> students)
         {
@@ -141,33 +143,12 @@ namespace Canvas
             Console.WriteLine();
         }
 
-        public static void SearchCourse(List<Course> courses)
+        public static void SearchCourse()
         {
-            Console.WriteLine($"Enter 'n' to search by name or 'd' to search by description: ");
-            var choice = Console.ReadLine();
-            if(choice == "n")
-            {
-                Console.WriteLine("Enter the name to search for:");
-                var name = Console.ReadLine();
-                if(SearchCourseByName(name ?? " ", courses))
-                {
-                    Console.WriteLine("Course was found.");
-                }
-                else 
-                    Console.WriteLine("Course was not found.");
-            }   
-            if(choice == "d")
-            {
-                Console.WriteLine("Enter the description to search for:");
-                var description = Console.ReadLine();
-                if(SearchCourseByDescription(description ?? " ", courses))
-                {
-                    Console.WriteLine("Course was found.");
-                }
-                else 
-                    Console.WriteLine("Course was not found.");
-            }  
-            Console.WriteLine();
+            Console.WriteLine("Enter a query to search for: ");
+            var query = Console.ReadLine();
+            var found = CourseService.Current.Search(query ?? string.Empty);
+            found.ToList().ForEach(Console.WriteLine);
         }
         public static bool SearchCourseByName(string name, List<Course> courses)
         {
