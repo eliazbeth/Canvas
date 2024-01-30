@@ -45,8 +45,14 @@ namespace Canvas.Services
 
         public void ListCourses()
         {
-                int count = 0;
-                courses.ForEach(c => Console.WriteLine($"{++count}. {c.Name} - {c.Description}"));
+            int count = 0;
+            courses.ForEach(c => Console.WriteLine($"{++count}. {c.Code} - {c.Name}"));
+        }
+
+        public void ListCoursesFull()
+        {
+            int count = 0;
+            courses.ForEach(c => Console.WriteLine($"{++count}. {c}"));
         }
 
         public Course CourseAt(int index)

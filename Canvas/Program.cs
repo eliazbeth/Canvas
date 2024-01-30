@@ -123,6 +123,10 @@ namespace Canvas
         {
             CourseService.Current.ListCourses();
         }
+        public static void ListCoursesFull()
+        {
+            CourseService.Current.ListCoursesFull();
+        }
 
         public static void ListStudents()
         {
@@ -223,7 +227,7 @@ namespace Canvas
         }
         public static Course ChooseACourse(List<Course> courses)
         {
-            ListCourses();
+            ListCoursesFull();
             Console.WriteLine("Choose a course: ");
             var course = Console.ReadLine();
             var courseInt = int.Parse(course ?? "0");
