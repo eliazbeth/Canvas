@@ -28,5 +28,9 @@ namespace Canvas.Services
         {
             students = new List<Person>();
         }
+        public void AddStudent(Person student)
+        {
+            students.Add(student);
+        }
     }
 }

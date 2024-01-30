@@ -32,7 +32,7 @@ namespace Canvas
                         break;
                     case "7":   UpdateCourse(courses);
                         break;
-                    case "8":   AddStudent(students);
+                    case "8":   AddStudent();
                         break;
                     case "9":   ListStudents(students);
                         break;
@@ -84,7 +84,7 @@ namespace Canvas
                 Course myCourse = new Course{Code = code, Name = name, Description = description};
                 CourseService.Current.Add(myCourse);
         }
-        public static void AddStudent(List<Person> students)
+        public static void AddStudent()
         {
                 Console.WriteLine("Student Name:");
                 var name = Console.ReadLine();
@@ -93,7 +93,7 @@ namespace Canvas
                 var classification = Console.ReadLine();
 
                 Person myStudent = new Person{Name = name, Classification = classification};
-                students.Add(myStudent);
+                PersonService.Current.AddStudent(myStudent);
         }
         public static void AddStudentToCourse(List<Person> students, List<Course> courses)
         {
