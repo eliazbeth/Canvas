@@ -34,13 +34,6 @@ namespace Canvas.Services
         {
             students.Add(student);
         }
-
-        public void ListStudents()
-        {
-            int count = 0;
-            students.ForEach(s => Console.WriteLine($"{++count}. {s}"));
-        }
-
         public IEnumerable<Person> Search(string query)
         {
             this.query = query;
