@@ -147,6 +147,7 @@ namespace Canvas
             Console.WriteLine("Enter a query to search for: ");
             var query = Console.ReadLine();
             var found = CourseService.Current.Search(query ?? string.Empty);
+            Console.WriteLine("Found:");
             found.ToList().ForEach(Console.WriteLine);
         }
         
