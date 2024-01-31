@@ -22,9 +22,9 @@ namespace Canvas
                         break;
                     case "2":   ListCourses();
                         break;
-                    case "3":   AddStudentToCourse(students, courses);
+                    case "3":   AddStudentToCourse();
                         break;
-                    case "4":   RemoveStudentFromCourse(students, courses);
+                    case "4":   RemoveStudentFromCourse();
                         break;
                     case "5":   SearchCourse();
                         break;
@@ -95,7 +95,7 @@ namespace Canvas
                 Person myStudent = new Person{Name = name, Classification = classification};
                 PersonService.Current.AddStudent(myStudent);
         }
-        public static void AddStudentToCourse(List<Person> students, List<Course> courses)
+        public static void AddStudentToCourse()
         {
             Course course = ChooseACourse();
             Person student = ChooseAStudent();
@@ -107,7 +107,7 @@ namespace Canvas
                 Console.WriteLine(s);
             }
         }
-        public static void RemoveStudentFromCourse(List<Person> students, List<Course> courses)
+        public static void RemoveStudentFromCourse()
         {
             Course course = ChooseACourse(); 
             Person student = ChooseAStudentFromRoster(course);
