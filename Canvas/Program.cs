@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+using Canvas.Helpers;
 using Canvas.Models;
 using Canvas.Services;
 
@@ -9,8 +10,8 @@ namespace Canvas
     {
         static void Main(string[] args)
         {
-            List<Course> courses = new List<Course>();
-            List<Person> students = new List<Person>();
+            var courseHelper = new CourseHelper();
+            var personHelper = new PersonHelper();
             PrintMenu();
             Console.WriteLine("Choose an option:");
             var choice = Console.ReadLine();
