@@ -72,5 +72,15 @@ namespace Canvas.Services
                     break;
             }
         }
+
+        public void AddStudentToCourse(Person student, Course course)
+        {
+            course.Roster.Add(student);
+        }
+
+        public void RemoveStudentFromCourse(Person student, Course course)
+        {
+            course.Roster.Add(student);
+        }
     }
 }

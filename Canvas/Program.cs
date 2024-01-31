@@ -100,7 +100,7 @@ namespace Canvas
             Course course = ChooseACourse();
             Person student = ChooseAStudent();
 
-            course.Roster.Add(student);
+            CourseService.Current.AddStudentToCourse(student, course);
             Console.WriteLine($"Roster for {course.Name}:");
             foreach(Person s in course.Roster)
             {
@@ -112,7 +112,7 @@ namespace Canvas
             Course course = ChooseACourse(); 
             Person student = ChooseAStudent();
 
-            course.Roster.Remove(student);
+            CourseService.Current.RemoveStudentFromCourse(student, course);
             Console.WriteLine($"Roster for {course.Name}:");
             foreach(Person s in course.Roster)
             {
