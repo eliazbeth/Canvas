@@ -28,7 +28,7 @@ namespace Canvas
                         break;
                     case "5":   SearchCourse();
                         break;
-                    case "6":   AddAssignment(courses);
+                    case "6":   AddAssignment();
                         break;
                     case "7":   UpdateCourse();
                         break;
@@ -38,7 +38,7 @@ namespace Canvas
                         break;
                     case "10":  SearchStudentByName();
                         break;
-                    case "11":  ListCoursesTakenByStudent(students, courses);
+                    case "11":  ListCoursesTakenByStudent();
                         break;
                     case "12":  UpdateStudent();
                         break;
@@ -139,7 +139,7 @@ namespace Canvas
         public static void ListStudentsInCourse(Course course)
         {
             int count = 0;
-            course.Roster.ForEach(s => Console.WriteLine($"{++count}. {s}"));
+            course.Roster.ToList().ForEach(s => Console.WriteLine($"{++count}. {s}"));
         }
 
         public static void SearchCourse()
@@ -158,7 +158,7 @@ namespace Canvas
             Console.WriteLine("Found:");
             found.ToList().ForEach(Console.WriteLine);
         }
-        public static void AddAssignment(List<Course> courses)
+        public static void AddAssignment()
         {
             Course course = ChooseACourse();
 
@@ -220,12 +220,12 @@ namespace Canvas
             PersonService.Current.UpdateStudent(choice ?? " ", updated ?? " ", student);
             Console.WriteLine("Student updated.\n");
         }
-        public static void ListCoursesTakenByStudent(List<Person> students, List<Course> courses)
+        public static void ListCoursesTakenByStudent()
         {
             Person student = ChooseAStudent();
             Console.WriteLine($"Courses being taken by {student.Name}:");
             int count = 1;
-            foreach(Course c in courses)
+            foreach(Course c in CourseService.Current.Courses)
             {
                 if(c.Roster.Contains(student))
                 {
@@ -239,7 +239,7 @@ namespace Canvas
             ListCoursesFull();
             Console.WriteLine("Choose a course: ");
             var course = Console.ReadLine();
-            var courseInt = int.Parse(course ?? "0");
+            var courseInt = int.Parse(course ?? "1");
             courseInt--;
             return CourseService.Current.CourseAt(courseInt);
         }
@@ -249,7 +249,7 @@ namespace Canvas
             ListStudents();
             Console.WriteLine("Choose a student: ");
             var student = Console.ReadLine();
-            var studentInt = int.Parse(student ?? "0");
+            var studentInt = int.Parse(student ?? "1");
             studentInt--;
             return PersonService.Current.StudentAt(studentInt);
         }
@@ -258,7 +258,7 @@ namespace Canvas
             ListStudentsInCourse(course);
             Console.WriteLine("Choose a student: ");
             var student = Console.ReadLine();
-            var studentInt = int.Parse(student ?? "0");
+            var studentInt = int.Parse(student ?? "1");
             studentInt--;
             return course.Roster[studentInt];
         }

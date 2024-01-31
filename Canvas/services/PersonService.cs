@@ -21,7 +21,7 @@ namespace Canvas.Services
         {
             get
             {
-                return students.Where(s => (s.Name ?? " ").ToLower().Contains(query?.ToLower() ?? string.Empty));
+                return students;
             }
         }
 
@@ -37,7 +37,7 @@ namespace Canvas.Services
         public IEnumerable<Person> Search(string query)
         {
             this.query = query;
-            return Students;
+            return Students.Where(s => (s.Name ?? " ").ToLower().Contains(query?.ToLower() ?? string.Empty));
         }
         
         public Person StudentAt(int index)

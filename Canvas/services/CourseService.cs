@@ -21,10 +21,7 @@ namespace Canvas.Services
         {
             get
             {
-                return courses.Where(
-                    c => 
-                    (c.Name??" ").ToLower().Contains(query?.ToLower() ?? string.Empty) || 
-                    (c.Description??" ").ToLower().Contains(query?.ToLower() ?? string.Empty));
+                return courses;
             }
         }
         private CourseService()
@@ -35,7 +32,10 @@ namespace Canvas.Services
         public IEnumerable<Course> Search(string query)
         {
             this.query = query;
-            return Courses;
+            return Courses.Where(
+                    c => 
+                    (c.Name??" ").ToLower().Contains(query?.ToLower() ?? string.Empty) || 
+                    (c.Description??" ").ToLower().Contains(query?.ToLower() ?? string.Empty));;
         }
 
         public void Add(Course course)
