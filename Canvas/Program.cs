@@ -121,16 +121,19 @@ namespace Canvas
         }
         public static void ListCourses()
         {
-            CourseService.Current.ListCourses();
+            int count = 0;
+            CourseService.Current.Courses.ToList().ForEach(c => Console.WriteLine($"{++count}. {c.Code} - {c.Name}"));
         }
         public static void ListCoursesFull()
         {
-            CourseService.Current.ListCoursesFull();
+            int count = 0;
+            CourseService.Current.Courses.ToList().ForEach(c => Console.WriteLine($"{++count}. {c}"));
         }
 
         public static void ListStudents()
         {
-            PersonService.Current.ListStudents();
+            int count = 0;
+            PersonService.Current.Students.ToList().ForEach(s => Console.WriteLine($"{++count}. {s}"));
         }
 
         public static void SearchCourse()

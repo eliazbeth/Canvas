@@ -80,7 +80,7 @@ namespace Canvas.Services
 
         public void RemoveStudentFromCourse(Person student, Course course)
         {
-            course.Roster.Add(student);
+            course.Roster.Remove(student);
         }
     }
 }
