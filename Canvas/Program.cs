@@ -110,7 +110,7 @@ namespace Canvas
         public static void RemoveStudentFromCourse(List<Person> students, List<Course> courses)
         {
             Course course = ChooseACourse(); 
-            Person student = ChooseAStudent();
+            Person student = ChooseAStudentFromRoster(course);
 
             CourseService.Current.RemoveStudentFromCourse(student, course);
             Console.WriteLine($"Roster for {course.Name}:");
@@ -134,6 +134,12 @@ namespace Canvas
         {
             int count = 0;
             PersonService.Current.Students.ToList().ForEach(s => Console.WriteLine($"{++count}. {s}"));
+        }
+
+        public static void ListStudentsInCourse(Course course)
+        {
+            int count = 0;
+            course.Roster.ForEach(s => Console.WriteLine($"{++count}. {s}"));
         }
 
         public static void SearchCourse()
@@ -247,5 +253,15 @@ namespace Canvas
             studentInt--;
             return PersonService.Current.StudentAt(studentInt);
         }
+        public static Person ChooseAStudentFromRoster(Course course)
+        {
+            ListStudentsInCourse(course);
+            Console.WriteLine("Choose a student: ");
+            var student = Console.ReadLine();
+            var studentInt = int.Parse(student ?? "0");
+            studentInt--;
+            return course.Roster[studentInt];
+        }
+        
     }
 }
