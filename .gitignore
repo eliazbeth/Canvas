@@ -4,3 +4,12 @@ Library.Canvas/bin
 Library.Canvas/obj
 Canvas/Canvas.sln
 Canvas/Canvas.csproj
+MAUI.Canvas/bin
+MAUI.Canvas/obj
+MAUI.Canvas/Platforms
+MAUI.Canvas/Properties
+MAUI.Canvas/Resources
+MAUI.Canvas/MAUI.Canvas.csproj
+Library.Canvas/Library.Canvas.csproj
+.vscode
+
