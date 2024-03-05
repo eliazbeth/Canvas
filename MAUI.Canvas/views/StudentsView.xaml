@@ -9,5 +9,8 @@
             Text="STUDENTS"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+        <ListView
+            ItemsSource="{Binding Students}">
+        </ListView>
     </VerticalStackLayout>
 </ContentPage>
