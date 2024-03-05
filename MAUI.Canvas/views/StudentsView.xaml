@@ -4,6 +4,7 @@
              x:Class="MAUI.Canvas.views.StudentsView"
              Title="StudentsView">
     <VerticalStackLayout>
+        <Button Text="Back" Clicked="BackClicked"/>
         <Label 
             Text="STUDENTS"
             VerticalOptions="Center" 
