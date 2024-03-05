@@ -1,22 +1,22 @@
 ﻿using System.Collections.ObjectModel;
-using Canvas.Models;
-using Canvas.Services;
+using Library.Canvas.Models;
+using Library.Canvas.Services;
 namespace MAUI.Canvas.viewmodels;
 
 public class StudentsViewModel
 {
-    private PersonService studentService;
+    private StudentService studentService;
 
-    public ObservableCollection<Person> Students
+    public ObservableCollection<Student> Students
     {
         get
         {
-            return new ObservableCollection<Person>(studentService.Students);
+            return new ObservableCollection<Student>(studentService.Students);
         }
     }
 
     public StudentsViewModel()
     {
-        studentService = PersonService.Current;
+        studentService = StudentService.Current;
     }
 }
