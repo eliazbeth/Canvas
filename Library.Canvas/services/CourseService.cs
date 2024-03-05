@@ -1,7 +1,7 @@
-using Canvas.Models;
+using Library.Canvas.Models;
 using Microsoft.VisualBasic;
 
-namespace Canvas.Services
+namespace Library.Canvas.Services
 {
     public class CourseService
     {
@@ -62,12 +62,12 @@ namespace Canvas.Services
             }
         }
 
-        public void AddStudentToCourse(Person student, Course course)
+        public void AddStudentToCourse(Student student, Course course)
         {
             course.Roster.Add(student);
         }
 
-        public void RemoveStudentFromCourse(Person student, Course course)
+        public void RemoveStudentFromCourse(Student student, Course course)
         {
             course.Roster.Remove(student);
         }

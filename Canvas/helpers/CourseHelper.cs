@@ -1,11 +1,11 @@
-using Canvas.Models;
-using Canvas.Services;
+using Library.Canvas.Models;
+using Library.Canvas.Services;
 
 namespace Canvas.Helpers
 {
     public class CourseHelper
     {
-        PersonHelper personHelper = new PersonHelper();
+        StudentHelper studentHelper = new StudentHelper();
         public void AddCourse()
         {
                 Console.WriteLine("Course Code:");
@@ -99,7 +99,7 @@ namespace Canvas.Helpers
         public void AddStudentToCourse()
         {
             Course course = ChooseACourse();
-            Person student = personHelper.ChooseAStudent();
+            Student student = studentHelper.ChooseAStudent();
 
             CourseService.Current.AddStudentToCourse(student, course);
             Console.WriteLine($"Roster for {course.Name}:");
@@ -111,7 +111,7 @@ namespace Canvas.Helpers
         public void RemoveStudentFromCourse()
         {
             Course course = ChooseACourse(); 
-            Person student = personHelper.ChooseAStudentFromRoster(course);
+            Student student = studentHelper.ChooseAStudentFromRoster(course);
 
             CourseService.Current.RemoveStudentFromCourse(student, course);
             Console.WriteLine($"Roster for {course.Name}:");
@@ -123,7 +123,7 @@ namespace Canvas.Helpers
 
         public void ListCoursesTakenByStudent()
         {
-            Person student = personHelper.ChooseAStudent();
+            Student student = studentHelper.ChooseAStudent();
             Console.WriteLine($"Courses being taken by {student.Name}:");
             int count = 1;
             foreach(Course c in CourseService.Current.Courses)

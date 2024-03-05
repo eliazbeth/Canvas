@@ -1,8 +1,8 @@
-using Canvas.Models;
-using Canvas.Services;
+using Library.Canvas.Models;
+using Library.Canvas.Services;
 namespace Canvas.Helpers
 {
-    public class PersonHelper
+    public class StudentHelper
     {
         public void AddStudent()
         {
@@ -12,13 +12,13 @@ namespace Canvas.Helpers
                 Console.WriteLine("Student Classification:");
                 var classification = Console.ReadLine();
 
-                Person myStudent = new Person{Name = name, Classification = classification};
-                PersonService.Current.AddStudent(myStudent);
+                Student myStudent = new Student{Name = name, Classification = classification};
+                StudentService.Current.AddStudent(myStudent);
         }
         public void ListStudents()
         {
             int count = 0;
-            PersonService.Current.Students.ToList().ForEach(s => Console.WriteLine($"{++count}. {s}"));
+            StudentService.Current.Students.ToList().ForEach(s => Console.WriteLine($"{++count}. {s}"));
         }
         public static void ListStudentsInCourse(Course course)
         {
@@ -30,21 +30,21 @@ namespace Canvas.Helpers
         {
             Console.WriteLine("Enter a name to search for: ");
             var query = Console.ReadLine();
-            var found = PersonService.Current.Search(query ?? string.Empty);
+            var found = StudentService.Current.Search(query ?? string.Empty);
             Console.WriteLine("Found:");
             found.ToList().ForEach(Console.WriteLine);
         }
 
-        public Person ChooseAStudent()
+        public Student ChooseAStudent()
         {
             ListStudents();
             Console.WriteLine("Choose a student: ");
             var student = Console.ReadLine();
             var studentInt = int.Parse(student ?? "1");
             studentInt--;
-            return PersonService.Current.StudentAt(studentInt);
+            return StudentService.Current.StudentAt(studentInt);
         }
-        public Person ChooseAStudentFromRoster(Course course)
+        public Student ChooseAStudentFromRoster(Course course)
         {
             ListStudentsInCourse(course);
             Console.WriteLine("Choose a student: ");
@@ -55,7 +55,7 @@ namespace Canvas.Helpers
         }
         public void UpdateStudent()
         {
-            Person student = ChooseAStudent();
+            Student student = ChooseAStudent();
             Console.WriteLine("Choose what to update - enter 'n' for name or 'c' for classification: ");
             var choice = Console.ReadLine();
             string? updated;
@@ -69,7 +69,7 @@ namespace Canvas.Helpers
                     break;
             }
             updated = Console.ReadLine();
-            PersonService.Current.UpdateStudent(choice ?? " ", updated ?? " ", student);
+            StudentService.Current.UpdateStudent(choice ?? " ", updated ?? " ", student);
             Console.WriteLine("Student updated.\n");
         }
     }
