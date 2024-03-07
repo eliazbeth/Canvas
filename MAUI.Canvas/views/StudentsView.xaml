@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MAUI.Canvas.views.StudentsView"
-             Title="StudentsView">
+             Title="StudentsView"
+             NavigatedTo="StudentsView_NavigatedTo">
     <VerticalStackLayout>
         <Button Text="Back" Clicked="BackClicked"/>
         <Label 
@@ -12,5 +13,6 @@
         <ListView
             ItemsSource="{Binding Students}">
         </ListView>
+        <Button Text="Add student" Clicked="AddClicked"/>
     </VerticalStackLayout>
 </ContentPage>
