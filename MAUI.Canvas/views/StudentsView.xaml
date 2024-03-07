@@ -11,8 +11,11 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
         <ListView
-            ItemsSource="{Binding Students}">
+            ItemsSource="{Binding Students}"
+            SelectedItem="{Binding SelectedStudent}">
         </ListView>
         <Button Text="Add student" Clicked="AddClicked"/>
+        <Button Text="Remove student" Clicked="RemoveClicked"/>
+
     </VerticalStackLayout>
 </ContentPage>

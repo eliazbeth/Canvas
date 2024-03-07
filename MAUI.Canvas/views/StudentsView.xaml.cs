@@ -18,6 +18,10 @@ public partial class StudentsView : ContentPage
 		Shell.Current.GoToAsync("//StudentDetails");
 		//(BindingContext as StudentsViewModel)?.AddStudent();
 	}
+	private void RemoveClicked(object sender, EventArgs e)
+	{
+		(BindingContext as StudentsViewViewModel)?.Remove();
+	}
 	private void StudentsView_NavigatedTo(object sender, NavigatedToEventArgs e)
 	{
 		(BindingContext as StudentsViewViewModel)?.Refresh();

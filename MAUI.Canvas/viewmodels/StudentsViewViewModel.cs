@@ -18,6 +18,10 @@ public class StudentsViewViewModel : INotifyPropertyChanged
         }
     }
 
+    public Student SelectedStudent
+    {
+        get; set;
+    }
     public StudentsViewViewModel()
     {
         studentService = StudentService.Current;
@@ -37,5 +41,10 @@ public class StudentsViewViewModel : INotifyPropertyChanged
     public void Refresh()
     {
         NotifyPropertyChanged(nameof(Students));
+    }
+    public void Remove()
+    {
+        studentService.RemoveStudent(SelectedStudent);
+        Refresh();
     }
 }
