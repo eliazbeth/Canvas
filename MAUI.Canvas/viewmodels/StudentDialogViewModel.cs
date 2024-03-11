@@ -24,9 +24,14 @@ public class StudentDialogViewModel
         student.Classification = value;}
     }
 
-    public StudentDialogViewModel()
+    public StudentDialogViewModel(int sId)
     {
-        student = new Student();
+        if(sId == 0)
+            student = new Student();
+        else
+        {
+            student = StudentService.Current.GetStudent(sId) ?? new Student();
+        }
     }
 
     public void AddStudent()

@@ -1,3 +1,4 @@
+using System.Net.WebSockets;
 using Library.Canvas.Models;
 
 namespace Library.Canvas.Services
@@ -5,6 +6,13 @@ namespace Library.Canvas.Services
     public class StudentService
     {
         private List<Student> students;
+        private int LastId
+        {
+            get
+            {
+                return students.Select(c => c.Id).Max();
+            }
+        }
         private string? query; 
         private static StudentService? instance;
         public static StudentService Current
@@ -29,17 +37,25 @@ namespace Library.Canvas.Services
         {
             students = new List<Student>
             {
-                new Student{Name = "TestStudent1"},
-                new Student{Name = "TestStudent2"},
-                new Student{Name = "TestStudent3"},
-                new Student{Name = "TestStudent4"},
-                new Student{Name = "TestStudent5"}
+                new Student{Name = "TestStudent1", Id = 1},
+                new Student{Name = "TestStudent2", Id = 2},
+                new Student{Name = "TestStudent3", Id = 3},
+                new Student{Name = "TestStudent4", Id = 4},
+                new Student{Name = "TestStudent5", Id = 5}
             };
         }
 
         public void AddStudent(Student student)
         {
-            students.Add(student);
+            if(student.Id <= 0)
+            {
+                student.Id = LastId + 1;
+                students.Add(student);
+            }
+        }
+        public void RemoveStudent(Student student)
+        {
+            students.Remove(student);
         }
         public IEnumerable<Student> Search(string query)
         {
@@ -50,6 +66,10 @@ namespace Library.Canvas.Services
         public Student StudentAt(int index)
         {
             return students[index];
+        }
+        public Student GetStudent(int id)
+        {
+            return students.FirstOrDefault(s =>s .Id == id);
         }
         public void UpdateStudent(string choice, string updated, Student student)
         {

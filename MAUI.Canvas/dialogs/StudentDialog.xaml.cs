@@ -4,13 +4,15 @@ using MAUI.Canvas.viewmodels;
 
 namespace MAUI.Canvas.dialogs;
 
+[QueryProperty(nameof(StudentId), "studentId")]
 public partial class StudentDialog : ContentPage
 {
 	public StudentDialog()
 	{
 		InitializeComponent();
-		BindingContext = new StudentDialogViewModel();
+		BindingContext = new StudentDialogViewModel(0);
 	}
+	public int StudentId{get; set;}
 	private void CancelClicked(object sender, EventArgs e)
 	{
 		Shell.Current.GoToAsync("//Students");
@@ -22,6 +24,6 @@ public partial class StudentDialog : ContentPage
 	}
 	private void StudentDialog_NavigatedTo(object sender, NavigatedToEventArgs e)
 	{	
-		BindingContext = new StudentDialogViewModel();
+		BindingContext = new StudentDialogViewModel(StudentId);
 	}
 }

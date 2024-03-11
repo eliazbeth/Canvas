@@ -10,11 +10,21 @@
             Text="STUDENTS"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width = "10*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Entry Text = "{Binding Query}" Grid.Column="0"/>
+            <Button Text="Search" Clicked ="SearchClicked" Grid.Column="1"/>
+        </Grid>
         <ListView
             ItemsSource="{Binding Students}"
             SelectedItem="{Binding SelectedStudent}">
         </ListView>
         <Button Text="Add student" Clicked="AddClicked"/>
+        <Button Text="Update student" Clicked="UpdateClicked"/>
+
         <Button Text="Remove student" Clicked="RemoveClicked"/>
 
     </VerticalStackLayout>
