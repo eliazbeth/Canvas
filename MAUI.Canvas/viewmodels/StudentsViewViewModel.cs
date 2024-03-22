@@ -5,7 +5,7 @@ using Library.Canvas.Models;
 using Library.Canvas.Services;
 namespace MAUI.Canvas.viewmodels;
 
-public class StudentsViewModel : INotifyPropertyChanged
+public class StudentsViewViewModel : INotifyPropertyChanged
 {
     private StudentService studentService;
     public event PropertyChangedEventHandler? PropertyChanged;
@@ -16,7 +16,7 @@ public class StudentsViewModel : INotifyPropertyChanged
     {
         get
         {
-            return new ObservableCollection<Student>(studentService.Students.Where(s => (s.Name ?? " ").ToLower().Contains(Query?.ToLower() ?? string.Empty)));
+            return new ObservableCollection<Student>(studentService.Students.ToList().Where(s => (s.Name ?? " ").ToLower().Contains(Query?.ToLower() ?? string.Empty)));
         }
     }
 
@@ -24,7 +24,7 @@ public class StudentsViewModel : INotifyPropertyChanged
     {
         get; set;
     }
-    public StudentsViewModel()
+    public StudentsViewViewModel()
     {
         studentService = StudentService.Current;
         Query = string.Empty;

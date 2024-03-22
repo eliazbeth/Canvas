@@ -9,10 +9,10 @@
             Spacing="25">
             <Button 
                 Text="Student View"
-                Clicked = "StudentViewClicked"/>
+                Clicked = "StudentsViewClicked"/>
             <Button
                 Text="Instructor View"
-                Clicked = "InstructorViewClicked"/>
+                Clicked = "InstructorsViewClicked"/>
         </VerticalStackLayout>
     </ScrollView>
 

@@ -4,10 +4,45 @@
              x:Class="MAUI.Canvas.views.InstructorsView"
              Title="InstructorsView">
     <VerticalStackLayout>
-        <Button Text="Back" Clicked="BackClicked"/>
-        <Label 
-            Text="INSTRUCTORS"
+        <Label
+            Text="Instructor View" 
             VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            HorizontalOptions="Center"/>
+        <Button Text="Back" Clicked="BackClicked"/>
+        <!--List of students and crud operations-->
+        <Label
+            Text="STUDENTS" 
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width = "10*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Entry Text = "{Binding Query}" Grid.Column="0"/>
+            <Button Text="Search" Clicked ="SearchClicked" Grid.Column="1"/>
+        </Grid>
+        <ListView
+            ItemsSource="{Binding Students}"
+            SelectedItem="{Binding SelectedStudent}">
+    
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Label Text="{Binding Name}" Grid.Column="0"/>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Text="Add student" Clicked="AddClicked" Grid.Column="0"/>
+            <Button Text="Update student" Clicked="UpdateClicked" Grid.Column="1"/>
+            <Button Text="Remove student" Clicked="RemoveClicked" Grid.Column="2"/>
+        </Grid>
     </VerticalStackLayout>
 </ContentPage>

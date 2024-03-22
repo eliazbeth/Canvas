@@ -6,11 +6,11 @@ public partial class MainPage : ContentPage
 	{
 		InitializeComponent();
 	}
-	private void StudentViewClicked(object sender, EventArgs e)
+	private void StudentsViewClicked(object sender, EventArgs e)
 	{
 		Shell.Current.GoToAsync("//Students");
 	}
-	private void InstructorViewClicked(object sender, EventArgs e)
+	private void InstructorsViewClicked(object sender, EventArgs e)
 	{
 		Shell.Current.GoToAsync("//Instructors");
 	}
