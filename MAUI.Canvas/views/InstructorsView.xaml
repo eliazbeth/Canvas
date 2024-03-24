@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MAUI.Canvas.views.InstructorsView"
-             Title="InstructorsView">
+             Title="InstructorsView"
+             NavigatedTo="InstructorsView_NavigatedTo">
     <VerticalStackLayout>
         <Label
             Text="Instructor View" 
@@ -25,14 +26,6 @@
         <ListView
             ItemsSource="{Binding Students}"
             SelectedItem="{Binding SelectedStudent}">
-    
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Label Text="{Binding Name}" Grid.Column="0"/>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
         </ListView>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -40,9 +33,18 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Text="Add student" Clicked="AddClicked" Grid.Column="0"/>
+            <Button Text="Add student" Clicked="AddStudentClicked" Grid.Column="0"/>
             <Button Text="Update student" Clicked="UpdateClicked" Grid.Column="1"/>
             <Button Text="Remove student" Clicked="RemoveClicked" Grid.Column="2"/>
         </Grid>
+        <!--List of courses and crud operations-->
+        <Label
+            Text="COURSES" 
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"/>
+        <ListView
+            ItemsSource ="{Binding Courses}">
+        </ListView>
+        <Button Text="Add course" Clicked="AddCourseClicked"/>
     </VerticalStackLayout>
 </ContentPage>

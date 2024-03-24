@@ -12,24 +12,31 @@ public partial class InstructorsView : ContentPage
 	{
 		Shell.Current.GoToAsync("//MainPage");
 	}
-	private void AddClicked(object sender, EventArgs e)
+	private void AddStudentClicked(object sender, EventArgs e)
 	{
 		Shell.Current.GoToAsync("//StudentDetails?studentId=0");
-		//(BindingContext as StudentsViewModel)?.AddStudent();
 	}
 	private void UpdateClicked(object sender, EventArgs e)
 	{
-		var studentId = (BindingContext as StudentsViewViewModel)?.SelectedStudent?.Id;
+		var studentId = (BindingContext as InstructorsViewViewModel)?.SelectedStudent?.Id;
 		if (studentId != null)
 			Shell.Current.GoToAsync($"//StudentDetails?studentId={studentId}");
 	}
 	private void RemoveClicked(object sender, EventArgs e)
 	{
-		(BindingContext as StudentsViewViewModel)?.Remove();
+		(BindingContext as InstructorsViewViewModel)?.Remove();
 	}
 	
 	private void SearchClicked(object sender, EventArgs e)
 	{
-		(BindingContext as StudentsViewViewModel)?.Refresh();
+		(BindingContext as InstructorsViewViewModel)?.Refresh();
+	}
+	private void AddCourseClicked(object sender, EventArgs e)
+	{
+		Shell.Current.GoToAsync("//CourseDetails?courseCode=string.Empty");
+	}
+	private void InstructorsView_NavigatedTo(object sender, NavigatedToEventArgs e)
+	{
+		(BindingContext as InstructorsViewViewModel)?.Refresh();
 	}
 }

@@ -15,12 +15,12 @@ public partial class StudentDialog : ContentPage
 	public int StudentId{get; set;}
 	private void CancelClicked(object sender, EventArgs e)
 	{
-		Shell.Current.GoToAsync("//Students");
+		Shell.Current.GoToAsync("//Instructors");
 	}
 	private void AddClicked(object sender, EventArgs e)
 	{	
 		(BindingContext as StudentDialogViewModel)?.AddStudent();
-		Shell.Current.GoToAsync("//Students");
+		Shell.Current.GoToAsync("//Instructors");
 	}
 	private void StudentDialog_NavigatedTo(object sender, NavigatedToEventArgs e)
 	{	

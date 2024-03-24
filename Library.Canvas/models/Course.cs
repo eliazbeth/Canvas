@@ -17,7 +17,7 @@ namespace Library.Canvas.Models
 
         public override string ToString()
         {
-            return $"({Code}) {Name} - {Description}";
+            return $"({Code}) {Name}";
         }
     }
 }

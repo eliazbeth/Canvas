@@ -15,7 +15,6 @@ public partial class StudentsView : ContentPage
 	private void AddClicked(object sender, EventArgs e)
 	{
 		Shell.Current.GoToAsync("//StudentDetails?studentId=0");
-		//(BindingContext as StudentsViewModel)?.AddStudent();
 	}
 	private void UpdateClicked(object sender, EventArgs e)
 	{

@@ -1,7 +1,6 @@
 ﻿using Library.Canvas.Services;
 using Library.Canvas.Models;
 
-
 namespace MAUI.Canvas.viewmodels;
 
 public class StudentDialogViewModel

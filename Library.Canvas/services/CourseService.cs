@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using Library.Canvas.Models;
 using Microsoft.VisualBasic;
 
@@ -27,7 +28,18 @@ namespace Library.Canvas.Services
         }
         private CourseService()
         {
-            courses = new List<Course>();
+            courses = new List<Course>
+            {
+                new Course{Name = "TestCourse1", Code = "1"},
+                new Course{Name = "TestCourse2", Code = "2"},
+                new Course{Name = "TestCourse3", Code = "3"},
+                new Course{Name = "TestCourse4", Code = "4"},
+                new Course{Name = "TestCourse5", Code = "5"}
+            };
+        }
+        public Course GetCourse(string code)
+        {
+            return courses.FirstOrDefault(c =>c.Code.ToLower() == code.ToLower());
         }
 
         public IEnumerable<Course> Search(string query)
@@ -39,7 +51,7 @@ namespace Library.Canvas.Services
                     (c.Description??" ").ToLower().Contains(query?.ToLower() ?? string.Empty));;
         }
 
-        public void Add(Course course)
+        public void AddCourse(Course course)
         {
             courses.Add(course);
         }
