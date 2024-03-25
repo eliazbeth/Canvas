@@ -30,7 +30,10 @@ public class InstructorsViewViewModel : INotifyPropertyChanged
             return new ObservableCollection<Course>(courseService.Courses.ToList());
         }
     }
-
+    public Course SelectedCourse
+    {
+        get; set;
+    }
     public InstructorsViewViewModel()
     {
             studentService = StudentService.Current;
@@ -43,11 +46,11 @@ public class InstructorsViewViewModel : INotifyPropertyChanged
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
-    public void AddStudent()
+    /*public void AddStudent()
     {
         studentService.AddStudent(new Student{Name = "New student"});
         Refresh();
-    }
+    }*/
 
     public void Refresh()
     {

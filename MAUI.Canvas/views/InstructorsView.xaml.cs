@@ -16,7 +16,7 @@ public partial class InstructorsView : ContentPage
 	{
 		Shell.Current.GoToAsync("//StudentDetails?studentId=0");
 	}
-	private void UpdateClicked(object sender, EventArgs e)
+	private void UpdateStudentClicked(object sender, EventArgs e)
 	{
 		var studentId = (BindingContext as InstructorsViewViewModel)?.SelectedStudent?.Id;
 		if (studentId != null)
@@ -35,8 +35,15 @@ public partial class InstructorsView : ContentPage
 	{
 		Shell.Current.GoToAsync("//CourseDetails?courseCode=string.Empty");
 	}
+	private void UpdateCourseClicked(object sender, EventArgs e)
+	{
+		var courseCode = (BindingContext as InstructorsViewViewModel)?.SelectedCourse?.Code;
+		if (courseCode != null)
+			Shell.Current.GoToAsync($"//CourseDetails?courseCode={courseCode}");
+	}
 	private void InstructorsView_NavigatedTo(object sender, NavigatedToEventArgs e)
 	{
 		(BindingContext as InstructorsViewViewModel)?.Refresh();
 	}
+	
 }

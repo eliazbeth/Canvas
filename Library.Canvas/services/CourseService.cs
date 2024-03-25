@@ -53,7 +53,8 @@ namespace Library.Canvas.Services
 
         public void AddCourse(Course course)
         {
-            courses.Add(course);
+            if(!courses.Contains(course))
+                courses.Add(course);
         }
 
         public Course CourseAt(int index)

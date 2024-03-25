@@ -34,7 +34,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button Text="Add student" Clicked="AddStudentClicked" Grid.Column="0"/>
-            <Button Text="Update student" Clicked="UpdateClicked" Grid.Column="1"/>
+            <Button Text="Update student" Clicked="UpdateStudentClicked" Grid.Column="1"/>
             <Button Text="Remove student" Clicked="RemoveClicked" Grid.Column="2"/>
         </Grid>
         <!--List of courses and crud operations-->
@@ -43,8 +43,16 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center"/>
         <ListView
-            ItemsSource ="{Binding Courses}">
+            ItemsSource ="{Binding Courses}"
+            SelectedItem="{Binding SelectedCourse}">
         </ListView>
-        <Button Text="Add course" Clicked="AddCourseClicked"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Text="Add course" Clicked="AddCourseClicked" Grid.Column="0"/>
+            <Button Text="Update course" Clicked="UpdateCourseClicked" Grid.Column="1"/>
+        </Grid>
     </VerticalStackLayout>
 </ContentPage>
