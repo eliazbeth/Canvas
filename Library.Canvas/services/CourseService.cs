@@ -30,7 +30,7 @@ namespace Library.Canvas.Services
         {
             courses = new List<Course>
             {
-                new Course{Name = "TestCourse1", Code = "1"},
+                new Course{Name = "TestCourse1", Code = "1", Roster=new List<Student>{StudentService.Current.GetStudent(1), StudentService.Current.GetStudent(2)}},
                 new Course{Name = "TestCourse2", Code = "2"},
                 new Course{Name = "TestCourse3", Code = "3"},
                 new Course{Name = "TestCourse4", Code = "4"},
@@ -77,7 +77,8 @@ namespace Library.Canvas.Services
 
         public void AddStudentToCourse(Student student, Course course)
         {
-            course.Roster.Add(student);
+            if(!course.Roster.Contains(student))
+                course.Roster.Add(student);
         }
 
         public void RemoveStudentFromCourse(Student student, Course course)
