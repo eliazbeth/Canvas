@@ -14,18 +14,18 @@ public partial class CourseDialog : ContentPage
 	{
 		Shell.Current.GoToAsync("//Instructors");
 	}
-	private void AddClicked(object sender, EventArgs e)
+	private void DoneClicked(object sender, EventArgs e)
 	{	
 		(BindingContext as CourseDialogViewModel)?.AddCourse();
 		Shell.Current.GoToAsync("//Instructors");
 	}
-	/*private void AddStudentClicked(object sender, EventArgs e)
+	private void AddStudentClicked(object sender, EventArgs e)
 	{	
-		var courseCode = (BindingContext as InstructorsViewViewModel)?.SelectedCourse?.Code;
-		Shell.Current.GoToAsync($"//RosterDetails?courseCode={courseCode}");
-	}*/
+		(BindingContext as CourseDialogViewModel)?.AddStudent();
+	}
 	private void CourseDialog_NavigatedTo(object sender, NavigatedToEventArgs e)
 	{	
 		BindingContext = new CourseDialogViewModel(CourseCode);
+		(BindingContext as CourseDialogViewModel)?.Refresh();
 	}
 }

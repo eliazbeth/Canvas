@@ -1,11 +1,16 @@
-﻿using Library.Canvas.Models;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using Library.Canvas.Models;
 using Library.Canvas.Services;
 namespace MAUI.Canvas.viewmodels;
 
-public class CourseDialogViewModel
+public class CourseDialogViewModel :INotifyPropertyChanged
 {
     private Course course;
     private StudentService studentService;
+    private CourseService courseService;
+    public event PropertyChangedEventHandler? PropertyChanged;
     public Course Course
     {
         get{return course;}
@@ -16,6 +21,14 @@ public class CourseDialogViewModel
         {
             return studentService.Students;
         }
+    }
+    public Student SelectedStudent
+    {
+        get; set;
+    }
+    private void NotifyPropertyChanged([CallerMemberName] String propertyName="")
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
     public string Name
     {
@@ -35,22 +48,21 @@ public class CourseDialogViewModel
         set{if (course==null) course = new Course();
         course.Description = value;}
     }
-    public List<Student> Roster
+    public ObservableCollection<Student> Roster
     {
-        get{return course.Roster ?? new List<Student>();}
-        set{if (course==null) course = new Course();
-        course.Roster = value;}
+        get{return new ObservableCollection<Student>(course.Roster);}
     }
 
     public CourseDialogViewModel(string code)
     {
+        studentService = StudentService.Current;
+        courseService = CourseService.Current;
         if(code == string.Empty)
             course = new Course();
         else
         {
-            course = CourseService.Current.GetCourse(code) ?? new Course();
+            course = courseService.GetCourse(code) ?? new Course();
         }
-        studentService = StudentService.Current;
     }
     public void AddCourse()
     {
@@ -61,9 +73,11 @@ public class CourseDialogViewModel
     }
     public void AddStudent()
     {
-        if(course != null)
-        {
-            CourseService.Current.AddCourse(course);
-        }
+        courseService.AddStudentToCourse(SelectedStudent, course);
+        Refresh();
+    }
+    public void Refresh()
+    {
+        NotifyPropertyChanged(nameof(course.Roster));
     }
 }

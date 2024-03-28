@@ -37,7 +37,7 @@
                 <Label Text="Course Roster" Grid.Column="0"/>
                 <Label Text="Students List" Grid.Column="1"/>
             </Grid>
-            <Button Text="Add student" Grid.Column="0" Grid.Row="4"/>
+            <Button Text="Add student" Clicked="AddStudentClicked" Grid.Column="0" Grid.Row="4"/>
             <Grid Grid.Column="1" Grid.Row = "4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/> 
@@ -47,10 +47,11 @@
                     ItemsSource ="{Binding Roster}" Grid.Column="0">
                 </ListView>
                 <ListView 
-                    ItemsSource ="{Binding Students}" Grid.Column="1">
+                    ItemsSource ="{Binding Students}" Grid.Column="1"
+                    SelectedItem="{Binding SelectedStudent}">
                 </ListView>
             </Grid>
         </Grid>
-        <Button Text="Add" Clicked="AddClicked"/>
+        <Button Text="Done" Clicked="DoneClicked"/>
     </VerticalStackLayout>
 </ContentPage>
