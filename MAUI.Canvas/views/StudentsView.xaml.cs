@@ -26,7 +26,10 @@ public partial class StudentsView : ContentPage
 	{
 		(BindingContext as StudentsViewViewModel)?.Remove();
 	}
-	
+	private void DetailsClicked(object sender, EventArgs e)
+	{
+		(BindingContext as StudentsViewViewModel)?.Refresh();
+	}
 	private void SearchClicked(object sender, EventArgs e)
 	{
 		(BindingContext as StudentsViewViewModel)?.Refresh();

@@ -10,5 +10,13 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center"/>
         <Button Text="Back" Clicked="BackClicked"/>
+        <ListView
+            ItemsSource="{Binding Students}"
+            SelectedItem="{Binding SelectedStudent}">
+        </ListView>
+        <Button Text="Show Details" Clicked="DetailsClicked"/>
+        <ListView
+            ItemsSource="{Binding Courses}">
+        </ListView>
     </VerticalStackLayout>
 </ContentPage>

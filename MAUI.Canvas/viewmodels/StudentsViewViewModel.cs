@@ -7,6 +7,7 @@ namespace MAUI.Canvas.viewmodels;
 
 public class StudentsViewViewModel : INotifyPropertyChanged
 {
+    private CourseService courseService;
     private StudentService studentService;
     public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -19,6 +20,13 @@ public class StudentsViewViewModel : INotifyPropertyChanged
             return new ObservableCollection<Student>(studentService.Students.ToList().Where(s => (s.Name ?? " ").ToLower().Contains(Query?.ToLower() ?? string.Empty)));
         }
     }
+    public ObservableCollection<Course> Courses
+    {
+        get
+        {
+            return new ObservableCollection<Course>(courseService.Courses.ToList().Where(c => c.Roster.Contains(SelectedStudent)));
+        }
+    }
 
     public Student SelectedStudent
     {
@@ -27,6 +35,7 @@ public class StudentsViewViewModel : INotifyPropertyChanged
     public StudentsViewViewModel()
     {
         studentService = StudentService.Current;
+        courseService = CourseService.Current;
         Query = string.Empty;
     }
 
@@ -44,6 +53,7 @@ public class StudentsViewViewModel : INotifyPropertyChanged
     public void Refresh()
     {
         NotifyPropertyChanged(nameof(Students));
+        NotifyPropertyChanged(nameof(Courses));
     }
     public void Remove()
     {

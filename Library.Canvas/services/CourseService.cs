@@ -42,6 +42,12 @@ namespace Library.Canvas.Services
             return courses.FirstOrDefault(c =>c.Code.ToLower() == code.ToLower());
         }
 
+        public void AddStudentToCourse(Student student, Course course)
+        {
+            if(!course.Roster.Contains(student))
+                course.Roster.Add(student);
+        }
+
         public IEnumerable<Course> Search(string query)
         {
             this.query = query;
@@ -75,11 +81,11 @@ namespace Library.Canvas.Services
             }
         }
 
-        public void AddStudentToCourse(Student student, Course course)
+        /*public void AddStudentToCourse(Student student, Course course)
         {
             if(!course.Roster.Contains(student))
                 course.Roster.Add(student);
-        }
+        }*/
 
         public void RemoveStudentFromCourse(Student student, Course course)
         {
