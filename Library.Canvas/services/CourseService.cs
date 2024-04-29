@@ -1,3 +1,4 @@
+using System.Reflection.Metadata.Ecma335;
 using System.Runtime.InteropServices;
 using Library.Canvas.Models;
 using Microsoft.VisualBasic;
@@ -31,7 +32,34 @@ namespace Library.Canvas.Services
             courses = new List<Course>
             {
                 new Course{Name = "TestCourse1", Code = "1", Roster=new List<Student>{StudentService.Current.GetStudent(1), StudentService.Current.GetStudent(2)}},
-                new Course{Name = "TestCourse2", Code = "2"},
+                new Course
+                {
+                    Name = "TestCourse2", Code = "2", 
+                    Modules=
+                    new List<Module>
+                    {
+                        new Module
+                        {
+                            Name = "Test Module 1",
+                            Description = "module description 1",
+                            Content=new List<ContentItem>
+                            {
+                                new ContentItem{Name="Test ContentItem 1", Description = "contentItem description 1"}, 
+                                new ContentItem{Name="Test ContentItem 2", Description = "contentItem description 2"}
+                            }
+                        },
+                        new Module
+                        {
+                            Name = "Test Module 2",
+                            Description = "module description 2",
+                            Content=new List<ContentItem>
+                            {
+                                new ContentItem{Name="Test ContentItem 1", Description = "contentItem description 1"}, 
+                                new ContentItem{Name="Test ContentItem 2", Description = "contentItem description 2"}
+                            }
+                        }
+                    }
+                },
                 new Course{Name = "TestCourse3", Code = "3"},
                 new Course{Name = "TestCourse4", Code = "4"},
                 new Course{Name = "TestCourse5", Code = "5"}
@@ -61,6 +89,12 @@ namespace Library.Canvas.Services
         {
             if(!courses.Contains(course))
                 courses.Add(course);
+        }
+        public void AddModule(Course course, Module module, ContentItem contentItem)
+        {
+            if (contentItem != null)
+                module.Content.Add(contentItem);
+            course.Modules.Add(module);
         }
 
         public Course CourseAt(int index)

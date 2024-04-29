@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace Library.Canvas.Models
 {
     public class Module
@@ -8,6 +10,17 @@ namespace Library.Canvas.Models
         public Module()
         {
 
+        }
+        public override string ToString()
+        {
+            StringBuilder stringBuilder= new StringBuilder();
+            foreach(var item in Content)
+            {
+                stringBuilder.Append("\t");
+                stringBuilder.Append(item.ToString());
+                stringBuilder.Append("\n");
+            }
+            return String.Join(" ", Name, ":", Description, "\n", stringBuilder.ToString());
         }
     }
 }

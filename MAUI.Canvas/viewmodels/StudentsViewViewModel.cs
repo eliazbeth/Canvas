@@ -32,6 +32,10 @@ public class StudentsViewViewModel : INotifyPropertyChanged
     {
         get; set;
     }
+    public Student SelectedCourse
+    {
+        get; set;
+    }
     public StudentsViewViewModel()
     {
         studentService = StudentService.Current;

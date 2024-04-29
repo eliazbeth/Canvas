@@ -23,6 +23,12 @@ public partial class CourseDialog : ContentPage
 	{	
 		(BindingContext as CourseDialogViewModel)?.AddStudent();
 	}
+	private void AddModuleClicked(object sender, EventArgs e)
+	{	
+		var courseCode = (BindingContext as InstructorsViewViewModel)?.SelectedCourse?.Code;
+		if (CourseCode != null)
+			Shell.Current.GoToAsync($"//ModulesDetails?courseCode={CourseCode}");
+	}
 	private void CourseDialog_NavigatedTo(object sender, NavigatedToEventArgs e)
 	{	
 		BindingContext = new CourseDialogViewModel(CourseCode);

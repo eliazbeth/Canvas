@@ -6,12 +6,15 @@
              NavigatedTo="CourseDialog_NavigatedTo">
     <VerticalStackLayout>
         <Button Text="Cancel" Clicked="CancelClicked"/>
+
         <Label 
             Text="Course Details"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -51,6 +54,17 @@
                     SelectedItem="{Binding SelectedStudent}">
                 </ListView>
             </Grid>
+            <Grid Grid.Column="0" Grid.Row="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition/> 
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Text="Modules" Grid.Row="0"/>
+                <Button Text="Add module" Clicked="AddModuleClicked" Grid.Row="1"/>
+            </Grid>
+            <ListView
+                ItemsSource ="{Binding Modules}" Grid.Column="1" Grid.Row="5" >
+            </ListView>
         </Grid>
         <Button Text="Done" Clicked="DoneClicked"/>
     </VerticalStackLayout>

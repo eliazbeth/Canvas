@@ -22,6 +22,7 @@ public class CourseDialogViewModel :INotifyPropertyChanged
             return studentService.Students;
         }
     }
+    
     public Student SelectedStudent
     {
         get; set;
@@ -52,7 +53,10 @@ public class CourseDialogViewModel :INotifyPropertyChanged
     {
         get{return new ObservableCollection<Student>(course.Roster);}
     }
-
+    public ObservableCollection<Module> Modules
+    {
+        get{return new ObservableCollection<Module>(course.Modules);}
+    }
     public CourseDialogViewModel(string code)
     {
         studentService = StudentService.Current;
