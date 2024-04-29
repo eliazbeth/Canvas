@@ -15,10 +15,19 @@
             SelectedItem="{Binding SelectedStudent}">
         </ListView>
         <Button Text="Show Student Details" Clicked="StudentDetailsClicked"/>
+        <Label Text="Your courses"/>
         <ListView
             ItemsSource="{Binding Courses}"
             SelectedItem="{Binding SelectedCourse}">
         </ListView>
-        <Button Text="Show Student Details" Clicked="StudentDetailsClicked"/>
+        <Button Text="Show Course Details" Clicked="CourseDetailsClicked"/>
+        <Label Text="Modules"/>
+        <ListView
+            ItemsSource="{Binding Modules}">
+        </ListView>
+        <Label Text="Assignments"/>
+        <ListView
+            ItemsSource="{Binding Assignments}">
+        </ListView>
     </VerticalStackLayout>
 </ContentPage>

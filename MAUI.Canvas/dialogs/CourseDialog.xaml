@@ -20,6 +20,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/> 
@@ -65,6 +66,40 @@
             <ListView
                 ItemsSource ="{Binding Modules}" Grid.Column="1" Grid.Row="5" >
             </ListView>
+            <Grid Grid.Column="0" Grid.Row="6">
+                <Grid.RowDefinitions>
+                    <RowDefinition/> 
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Text="Assignments" Grid.Row="0"/>
+                <Button Text="Add assignment" Clicked="AddAssignmentClicked" Grid.Row="1"/>
+            </Grid>
+            <Grid Grid.Column="1" Grid.Row="6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/> 
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <ListView
+                    ItemsSource ="{Binding Assignments}" Grid.Column="0">
+                </ListView>
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/> 
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>   
+                        <RowDefinition/> 
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Text="Name" Grid.Column="0" Grid.Row="0"/>
+                    <Entry Text="{Binding AssignmentName}" Grid.Column="1" Grid.Row="0"/>
+                    <Label Text="Description" Grid.Column="0" Grid.Row="1"/>
+                    <Entry Text="{Binding AssignmentDescription}" Grid.Column="1" Grid.Row="1"/>
+                    <Label Text="Points" Grid.Column="0" Grid.Row="2"/>
+                    <Entry Text="{Binding AssignmentPoints}" Grid.Column="1" Grid.Row="2"/>
+                </Grid>
+            </Grid>
         </Grid>
         <Button Text="Done" Clicked="DoneClicked"/>
     </VerticalStackLayout>

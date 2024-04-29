@@ -60,7 +60,11 @@ namespace Library.Canvas.Services
                         }
                     }
                 },
-                new Course{Name = "TestCourse3", Code = "3"},
+                new Course{Name = "TestCourse3", Code = "3",
+                Assignments = 
+                new List<Assignment>
+                {new Assignment{Name="Test Assignment 1", Description = "assignment 1 description", TotalAvailablePoints=100, DueDate=new DateTime(2025,10,31)},
+                new Assignment{Name="Test Assignment 2", Description = "assignment 2 description", TotalAvailablePoints=150, DueDate=new DateTime(2025,12,31)}}},
                 new Course{Name = "TestCourse4", Code = "4"},
                 new Course{Name = "TestCourse5", Code = "5"}
             };
@@ -96,6 +100,12 @@ namespace Library.Canvas.Services
                 module.Content.Add(contentItem);
             course.Modules.Add(module);
         }
+        public void AddAssignment(Course course, Assignment assignment)
+        {
+            if (course != null)
+                course.Assignments.Add(assignment);
+        }
+
 
         public Course CourseAt(int index)
         {

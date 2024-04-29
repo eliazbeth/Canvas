@@ -34,10 +34,7 @@ public partial class StudentsView : ContentPage
 	{
 		(BindingContext as StudentsViewViewModel)?.Refresh();
 	}
-	private void SearchClicked(object sender, EventArgs e)
-	{
-		(BindingContext as StudentsViewViewModel)?.Refresh();
-	}
+
 	private void StudentsView_NavigatedTo(object sender, NavigatedToEventArgs e)
 	{
 		(BindingContext as StudentsViewViewModel)?.Refresh();

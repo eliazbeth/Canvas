@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Text;
 using Library.Canvas.Models;
 using Library.Canvas.Services;
 namespace MAUI.Canvas.viewmodels;
@@ -8,6 +9,7 @@ namespace MAUI.Canvas.viewmodels;
 public class CourseDialogViewModel :INotifyPropertyChanged
 {
     private Course course;
+    private Assignment assignment;
     private StudentService studentService;
     private CourseService courseService;
     public event PropertyChangedEventHandler? PropertyChanged;
@@ -49,6 +51,24 @@ public class CourseDialogViewModel :INotifyPropertyChanged
         set{if (course==null) course = new Course();
         course.Description = value;}
     }
+    public string AssignmentName
+    {
+        get{return assignment?.Name ?? string.Empty;}
+        set{if (assignment==null) assignment = new Assignment();
+        assignment.Name=value;}
+    }
+    public string AssignmentDescription
+    {
+        get{return assignment?.Description ?? string.Empty;}
+        set{if (assignment==null) assignment = new Assignment();
+        assignment.Description = value;}
+    }
+    public double AssignmentPoints
+    {
+        get{return assignment.TotalAvailablePoints;}
+        set{if (assignment==null) assignment = new Assignment();
+        assignment.TotalAvailablePoints = value;}
+    }
     public ObservableCollection<Student> Roster
     {
         get{return new ObservableCollection<Student>(course.Roster);}
@@ -56,6 +76,10 @@ public class CourseDialogViewModel :INotifyPropertyChanged
     public ObservableCollection<Module> Modules
     {
         get{return new ObservableCollection<Module>(course.Modules);}
+    }
+    public ObservableCollection<Assignment> Assignments
+    {
+        get{return new ObservableCollection<Assignment>(course.Assignments);}
     }
     public CourseDialogViewModel(string code)
     {
@@ -67,6 +91,9 @@ public class CourseDialogViewModel :INotifyPropertyChanged
         {
             course = courseService.GetCourse(code) ?? new Course();
         }
+
+        if (assignment == null)
+            assignment = new Assignment();
     }
     public void AddCourse()
     {
@@ -80,8 +107,15 @@ public class CourseDialogViewModel :INotifyPropertyChanged
         courseService.AddStudentToCourse(SelectedStudent, course);
         Refresh();
     }
+    public void AddAssignment()
+    {
+        courseService.AddAssignment(course, assignment);
+        assignment = null;
+        Refresh();
+    }
     public void Refresh()
     {
         NotifyPropertyChanged(nameof(course.Roster));
+        NotifyPropertyChanged(nameof(course.Assignments));
     }
 }

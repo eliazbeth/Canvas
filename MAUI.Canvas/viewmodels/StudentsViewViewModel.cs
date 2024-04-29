@@ -9,6 +9,7 @@ public class StudentsViewViewModel : INotifyPropertyChanged
 {
     private CourseService courseService;
     private StudentService studentService;
+    
     public event PropertyChangedEventHandler? PropertyChanged;
 
     public string Query{get; set;}
@@ -32,10 +33,19 @@ public class StudentsViewViewModel : INotifyPropertyChanged
     {
         get; set;
     }
-    public Student SelectedCourse
+    public Course SelectedCourse
     {
         get; set;
     }
+    public List<Assignment> Assignments
+    {
+        get{return SelectedCourse?.Assignments ?? new List<Assignment>();}
+    }
+    public List<Module> Modules
+    {
+        get{return SelectedCourse?.Modules ?? new List<Module>();}
+    }
+
     public StudentsViewViewModel()
     {
         studentService = StudentService.Current;
@@ -58,6 +68,8 @@ public class StudentsViewViewModel : INotifyPropertyChanged
     {
         NotifyPropertyChanged(nameof(Students));
         NotifyPropertyChanged(nameof(Courses));
+        NotifyPropertyChanged(nameof(Assignments));
+        NotifyPropertyChanged(nameof(Modules));
     }
     public void Remove()
     {

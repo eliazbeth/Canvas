@@ -29,6 +29,10 @@ public partial class CourseDialog : ContentPage
 		if (CourseCode != null)
 			Shell.Current.GoToAsync($"//ModulesDetails?courseCode={CourseCode}");
 	}
+	private void AddAssignmentClicked(object sender, EventArgs e)
+	{	
+		(BindingContext as CourseDialogViewModel)?.AddAssignment();
+	}
 	private void CourseDialog_NavigatedTo(object sender, NavigatedToEventArgs e)
 	{	
 		BindingContext = new CourseDialogViewModel(CourseCode);
