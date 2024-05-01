@@ -21,6 +21,15 @@ public class StudentsViewViewModel : INotifyPropertyChanged
             return new ObservableCollection<Student>(studentService.Students.ToList().Where(s => (s.Name ?? " ").ToLower().Contains(Query?.ToLower() ?? string.Empty)));
         }
     }
+    public Student SelectedStudent
+    {
+        get; set;
+    }
+    public Dictionary<int,double> Grades
+    {
+        get{return SelectedStudent?.Grades ?? new Dictionary<int, double>();}
+    }
+
     public ObservableCollection<Course> Courses
     {
         get
@@ -29,10 +38,6 @@ public class StudentsViewViewModel : INotifyPropertyChanged
         }
     }
 
-    public Student SelectedStudent
-    {
-        get; set;
-    }
     public Course SelectedCourse
     {
         get; set;
@@ -41,9 +46,21 @@ public class StudentsViewViewModel : INotifyPropertyChanged
     {
         get{return SelectedCourse?.Assignments ?? new List<Assignment>();}
     }
+    public Assignment SelectedAssignment
+    {
+        get; set;
+    }
     public List<Module> Modules
     {
         get{return SelectedCourse?.Modules ?? new List<Module>();}
+    }
+    public ObservableCollection<Submission> Submissions
+    {
+        get{return new ObservableCollection<Submission>(SelectedCourse?.Submissions?.ToList().Where(s=>s.Student==SelectedStudent) ?? new List<Submission>());}
+    }
+    public string SubmissionContent
+    {
+        get; set;
     }
 
     public StudentsViewViewModel()
@@ -57,23 +74,23 @@ public class StudentsViewViewModel : INotifyPropertyChanged
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
-
-    public void AddStudent()
+    public void Submit()
     {
-        studentService.AddStudent(new Student{Name = "New student"});
-        NotifyPropertyChanged(nameof(Students));
+        courseService.AddSubmission(SelectedCourse, SelectedAssignment, SelectedStudent, SubmissionContent);
+        NotifyPropertyChanged(nameof(Submissions));
     }
 
     public void Refresh()
     {
-        NotifyPropertyChanged(nameof(Students));
         NotifyPropertyChanged(nameof(Courses));
         NotifyPropertyChanged(nameof(Assignments));
         NotifyPropertyChanged(nameof(Modules));
+        NotifyPropertyChanged(nameof(Submissions));
     }
-    public void Remove()
+    public void RefreshStudents()
     {
-        studentService.RemoveStudent(SelectedStudent);
-        Refresh();
+        NotifyPropertyChanged(nameof(Students));
     }
+    
+
 }

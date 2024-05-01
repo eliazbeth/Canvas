@@ -29,6 +29,7 @@ public class CourseDialogViewModel :INotifyPropertyChanged
     {
         get; set;
     }
+
     private void NotifyPropertyChanged([CallerMemberName] String propertyName="")
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -69,6 +70,14 @@ public class CourseDialogViewModel :INotifyPropertyChanged
         set{if (assignment==null) assignment = new Assignment();
         assignment.TotalAvailablePoints = value;}
     }
+    public Submission SelectedSubmission
+    {
+        get; set;
+    }
+    public double Grade
+    {
+        get;set;
+    }
     public ObservableCollection<Student> Roster
     {
         get{return new ObservableCollection<Student>(course.Roster);}
@@ -80,6 +89,10 @@ public class CourseDialogViewModel :INotifyPropertyChanged
     public ObservableCollection<Assignment> Assignments
     {
         get{return new ObservableCollection<Assignment>(course.Assignments);}
+    }
+    public ObservableCollection<Submission> Submissions
+    {
+        get{return new ObservableCollection<Submission>(course.Submissions.Where(s=>course.Assignments.Contains(s.Assignment)));}
     }
     public CourseDialogViewModel(string code)
     {
@@ -112,6 +125,12 @@ public class CourseDialogViewModel :INotifyPropertyChanged
         courseService.AddAssignment(course, assignment);
         assignment = null;
         Refresh();
+    }
+     public void GradeSubmission()
+    {
+        courseService.GradeSubmission(SelectedSubmission, Grade);
+        NotifyPropertyChanged(nameof(Submissions));
+       // courseService.Grade(SelectedSubmission, Grade);
     }
     public void Refresh()
     {

@@ -33,6 +33,10 @@ public partial class CourseDialog : ContentPage
 	{	
 		(BindingContext as CourseDialogViewModel)?.AddAssignment();
 	}
+	private void GradeClicked(object sender, EventArgs e)
+	{	
+		(BindingContext as CourseDialogViewModel)?.GradeSubmission();
+	}
 	private void CourseDialog_NavigatedTo(object sender, NavigatedToEventArgs e)
 	{	
 		BindingContext = new CourseDialogViewModel(CourseCode);

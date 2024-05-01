@@ -10,6 +10,7 @@ namespace Library.Canvas.Services
         {
             get
             {
+                if (students.Count==0) return 0;
                 return students.Select(c => c.Id).Max();
             }
         }
@@ -35,14 +36,14 @@ namespace Library.Canvas.Services
 
         private StudentService()
         {
-            students = new List<Student>
-            {
+            students = new List<Student>();
+            /*{
                 new Student{Name = "TestStudent1", Id = 1},
                 new Student{Name = "TestStudent2", Id = 2},
                 new Student{Name = "TestStudent3", Id = 3},
                 new Student{Name = "TestStudent4", Id = 4},
                 new Student{Name = "TestStudent5", Id = 5}
-            };
+            };*/
         }
 
         public void AddStudent(Student student)

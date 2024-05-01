@@ -29,8 +29,8 @@ namespace Library.Canvas.Services
         }
         private CourseService()
         {
-            courses = new List<Course>
-            {
+            courses = new List<Course>();
+            /*{
                 new Course{Name = "TestCourse1", Code = "1", Roster=new List<Student>{StudentService.Current.GetStudent(1), StudentService.Current.GetStudent(2)}},
                 new Course
                 {
@@ -60,14 +60,33 @@ namespace Library.Canvas.Services
                         }
                     }
                 },
-                new Course{Name = "TestCourse3", Code = "3",
-                Assignments = 
-                new List<Assignment>
-                {new Assignment{Name="Test Assignment 1", Description = "assignment 1 description", TotalAvailablePoints=100, DueDate=new DateTime(2025,10,31)},
-                new Assignment{Name="Test Assignment 2", Description = "assignment 2 description", TotalAvailablePoints=150, DueDate=new DateTime(2025,12,31)}}},
-                new Course{Name = "TestCourse4", Code = "4"},
+                new Course
+                {
+                    Name = "TestCourse3", Code = "3", Roster= new List<Student>{StudentService.Current.GetStudent(1),StudentService.Current.GetStudent(2)},
+                    Assignments = 
+                    new List<Assignment>
+                    {   
+                        new Assignment{Name="Test Assignment 1", Description = "assignment 1 description", TotalAvailablePoints=100, DueDate=new DateTime(2025,10,31)},
+                        new Assignment{Name="Test Assignment 2", Description = "assignment 2 description", TotalAvailablePoints=150, DueDate=new DateTime(2025,12,31)}
+                    },
+                },
+                new Course
+                {
+                    Name = "TestCourse4", Code = "4", 
+                    Submissions =
+                    new List<Submission>
+                    {
+                        new Submission{
+                            Student=new Student{Name="Submission Test Student 1"}, 
+                            Assignment=new Assignment{Name="Assignment 1 for submission testing", TotalAvailablePoints=100}, 
+                            Content="Content for submission 1"},
+                        new Submission{
+                            Student=new Student{Name="Submission Test Student 2"},
+                            Assignment=new Assignment{Name="Assignment 2 for submission testing", TotalAvailablePoints=150}, 
+                            Content="Content for submission 2"}
+                    }},
                 new Course{Name = "TestCourse5", Code = "5"}
-            };
+            };*/
         }
         public Course GetCourse(string code)
         {
@@ -105,8 +124,16 @@ namespace Library.Canvas.Services
             if (course != null)
                 course.Assignments.Add(assignment);
         }
-
-
+        public void AddSubmission(Course course, Assignment assignment, Student student, string content)
+        {
+            if (course != null)
+                course.Submissions.Add(new Submission{Content = content, Assignment = assignment, Student = student});
+        }
+        public void GradeSubmission(Submission submission, double grade)
+        {
+            if(submission != null)
+                submission.Grade = grade;
+        }
         public Course CourseAt(int index)
         {
             return courses[index];

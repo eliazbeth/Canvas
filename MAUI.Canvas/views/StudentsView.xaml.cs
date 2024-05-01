@@ -22,10 +22,7 @@ public partial class StudentsView : ContentPage
 		if (studentId != null)
 			Shell.Current.GoToAsync($"//StudentDetails?studentId={studentId}");
 	}
-	private void RemoveClicked(object sender, EventArgs e)
-	{
-		(BindingContext as StudentsViewViewModel)?.Remove();
-	}
+
 	private void StudentDetailsClicked(object sender, EventArgs e)
 	{
 		(BindingContext as StudentsViewViewModel)?.Refresh();
@@ -34,10 +31,14 @@ public partial class StudentsView : ContentPage
 	{
 		(BindingContext as StudentsViewViewModel)?.Refresh();
 	}
+	private void SubmitAssignmentClicked(object sender, EventArgs e)
+	{
+		(BindingContext as StudentsViewViewModel)?.Submit();
+	}
 
 	private void StudentsView_NavigatedTo(object sender, NavigatedToEventArgs e)
 	{
-		(BindingContext as StudentsViewViewModel)?.Refresh();
+		(BindingContext as StudentsViewViewModel)?.RefreshStudents();
 	}
 	
 }

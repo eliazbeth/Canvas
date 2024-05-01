@@ -8,13 +8,14 @@ namespace Library.Canvas.Models
           public List<Student> Roster{get; set;}
           public List<Assignment> Assignments{get; set;}
           public List<Module> Modules{get; set;}
+          public List<Submission> Submissions{get; set;}
           public Course()
           {
                 Roster = new List<Student>();
                 Assignments = new List<Assignment>();
                 Modules = new List<Module>();
+                Submissions = new List<Submission>();
           }
-
         public override string ToString()
         {
             return $"({Code}) {Name}";
